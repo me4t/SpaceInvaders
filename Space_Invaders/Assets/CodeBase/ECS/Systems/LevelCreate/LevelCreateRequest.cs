@@ -1,6 +1,6 @@
 using CodeBase.Configs;
 
-namespace ComponentsECS
+namespace CodeBase.ECS.Systems.LevelCreate
 {
 	public struct LevelCreateRequest
 	{

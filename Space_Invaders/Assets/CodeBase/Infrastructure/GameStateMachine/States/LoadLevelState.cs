@@ -1,10 +1,13 @@
 using CodeBase.CompositionRoot;
 using CodeBase.Configs;
+using CodeBase.Infrastructure.CoreEngine;
+using CodeBase.Services.SceneLoader;
+using CodeBase.Services.StaticData;
 using Leopotam.EcsLite;
 using UnityEngine;
 using Zenject;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.GameStateMachine.States
 {
 	public class LoadLevelState : IPaylodedState<string>
 	{

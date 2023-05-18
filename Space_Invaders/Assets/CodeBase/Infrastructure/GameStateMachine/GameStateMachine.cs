@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using CodeBase.Infrastructure.GameStateMachine.States;
 using Zenject;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.GameStateMachine
 {
 	public class GameStateMachine : IGameStateMachine, ITickable,IFixedTickable
 	{

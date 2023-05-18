@@ -2,7 +2,7 @@ using CodeBase.CompositionRoot;
 using UnityEngine;
 using Zenject;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.GameStateMachine.States
 {
 	public class GameLoopState : IState, ITickable,IFixedTickable
 	{

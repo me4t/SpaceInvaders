@@ -3,7 +3,7 @@ using CodeBase.Configs;
 using CodeBase.ECS.Systems.LevelCreate;
 using CodeBase.Enums;
 using CodeBase.Infrastructure;
-using ComponentsECS;
+using CodeBase.Services.StaticData;
 using Leopotam.EcsLite;
 using Unity.Mathematics;
 using UnityEngine;

@@ -1,3 +1,5 @@
+using CodeBase.Infrastructure.GameStateMachine;
+using CodeBase.Infrastructure.GameStateMachine.States;
 using UnityEngine;
 using Zenject;
 

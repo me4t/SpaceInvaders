@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using CodeBase.Configs;
 using CodeBase.ECS.Systems.LevelCreate;
+using CodeBase.Infrastructure.GameStateMachine.States;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.CoreEngine
 {
 	public class CoreEngine : ICoreEngine
 	{
@@ -87,13 +88,5 @@ namespace CodeBase.Infrastructure
 
 		void CreateLevelFromConfig(LevelConfig config) => 
 			LevelRequestFactory.Create(world, config);
-	}
-
-	public interface ICoreEngine
-	{
-		void InitSession(LevelConfig levelConfig);
-		void Cleanup();
-		void Tick();
-		void FixedTick();
 	}
 }

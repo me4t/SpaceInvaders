@@ -1,8 +1,6 @@
 using CodeBase.Configs;
 using CodeBase.ECS.Systems.Factories;
-using CodeBase.ECS.Systems.LevelCreate;
 using CodeBase.Enums;
-using ComponentsECS;
 using Leopotam.EcsLite;
 using Unity.Mathematics;
 
@@ -44,9 +42,7 @@ namespace CodeBase.ECS.Systems.LevelCreate
 		}
 
 	}
-}
-namespace ComponentsECS
-{
+
 	public struct SpawnEvent
 	{
 		public float3 Position;

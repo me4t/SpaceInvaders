@@ -1,10 +1,11 @@
 using CodeBase.ECS.Systems.Factories;
-using CodeBase.Infrastructure;
+using CodeBase.Infrastructure.CoreEngine;
+using CodeBase.Infrastructure.GameStateMachine.States;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.UnityEditor;
 using Zenject;
 
-namespace CodeBase.CompositionRoot
+namespace CodeBase.ZenjectInstallers
 {
 	public class InstallerECS : Installer<InstallerECS>
 	{

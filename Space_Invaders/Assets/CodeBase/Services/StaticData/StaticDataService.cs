@@ -2,9 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Configs;
 using CodeBase.Enums;
+using CodeBase.Infrastructure;
 using UnityEngine;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Services.StaticData
 {
 	public class StaticDataService : IStaticDataService
 	{
@@ -34,12 +35,5 @@ namespace CodeBase.Infrastructure
 			aliens.TryGetValue(id, out AlienConfig staticData)
 				? staticData
 				: null;
-	}
-
-	public interface IStaticDataService
-	{
-		void Load();
-		LevelConfig ForLevel(string sceneName);
-		AlienConfig ForAlien(AlienType id);
 	}
 }

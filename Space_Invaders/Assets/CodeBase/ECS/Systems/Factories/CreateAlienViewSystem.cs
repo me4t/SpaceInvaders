@@ -1,5 +1,6 @@
+using CodeBase.ECS.Systems.LevelCreate;
 using CodeBase.Infrastructure;
-using ComponentsECS;
+using CodeBase.Services.StaticData;
 using Leopotam.EcsLite;
 
 namespace CodeBase.ECS.Systems.Factories
