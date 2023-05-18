@@ -29,4 +29,29 @@ namespace CodeBase.Services.SceneLoader
 			onLoaded?.Invoke();
 		}
 	}
+
+	public class StandaloneInputService : IInputService
+	{
+		public float Horizontal => Input.GetAxis("Horizontal");
+		public float Vertical => Input.GetAxis("Vertical");
+		public Vector2 Axis => new Vector2(Horizontal, Vertical);
+	}
+
+	public class TimeService:ITimeService
+	{
+		public float DeltaTime => Time.deltaTime;
+
+	}
+
+	public interface ITimeService
+	{
+		float DeltaTime { get; }
+	}
+
+	public interface IInputService
+	{
+		float Horizontal { get; }
+		float Vertical { get; }
+		Vector2 Axis { get;}
+	}
 }

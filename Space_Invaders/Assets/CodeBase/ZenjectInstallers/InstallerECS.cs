@@ -42,9 +42,11 @@ namespace CodeBase.ZenjectInstallers
 
 		private void BindCommonSystems()
 		{
+			BindSystem<PlayerMoveSystem>();
 			BindSystem<CreateLevelSystem>();
 			BindSystem<CreateAlienViewSystem>();
 			BindSystem<CreatePlayerViewSystem>();
+			BindSystem<UpdateViewPositionSystem>();
 		}
 
 		void BindSystem<TSystem>() where TSystem : IEcsSystem => 

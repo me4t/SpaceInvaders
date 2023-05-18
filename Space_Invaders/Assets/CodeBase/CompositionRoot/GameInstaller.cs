@@ -1,8 +1,6 @@
 using CodeBase.ECS.Systems.Factories;
-using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.CoreEngine;
 using CodeBase.Infrastructure.GameStateMachine;
-using CodeBase.Services;
 using CodeBase.Services.CoroutineRunner;
 using CodeBase.Services.SceneLoader;
 using CodeBase.Services.StaticData;
@@ -15,6 +13,8 @@ namespace CodeBase.CompositionRoot
 	{
 		public override void InstallBindings()
 		{
+			BindTimeService();
+			BindInputService();
 			BindCoroutineRunner();
 			BindSceneLoader();
 			BindLoadingCurtain();
@@ -29,8 +29,10 @@ namespace CodeBase.CompositionRoot
 		
 
 		private void BindStaticData() => Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
+		private void BindTimeService() => Container.Bind<ITimeService>().To<TimeService>().AsSingle();
 
 		private void BindSceneLoader() => Container.Bind<SceneLoader>().AsSingle();
+		private void BindInputService() => Container.BindInterfacesTo<StandaloneInputService>().AsSingle();
 
 		private void BindCoroutineRunner() =>
 			Container

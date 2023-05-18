@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: MainLevel
   m_EditorClassIdentifier: 
   Key: Game
-  PlayerInitialPoint:
-    x: 0
-    y: 0
-    z: -39.6
-  PlayerType: 1
+  PlayerSpawnPoint:
+    PlayerInitialPoint:
+      x: 0
+      y: 0
+      z: -39.6
+    PlayerType: 1
   aliens:
   - Position:
       x: 4.5

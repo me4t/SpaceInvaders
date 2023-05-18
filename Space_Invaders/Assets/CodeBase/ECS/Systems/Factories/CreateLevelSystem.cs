@@ -64,6 +64,7 @@ namespace CodeBase.ECS.Systems.Factories
 			data.Position = spawnPoint.PlayerInitialPoint;
 			data.Type = spawnPoint.PlayerType;
 			data.PrefabPath = alienConfig.Path.ConvertToString();
+			data.Speed = alienConfig.Speed;
 			PlayerFactory.Create(world, data);
 		}
 	}
@@ -80,6 +81,7 @@ namespace CodeBase.ECS.Systems.Factories
 		public float3 Position;
 		public PlayerType Type;
 		public string PrefabPath;
+		public float Speed;
 	}
 	
 }

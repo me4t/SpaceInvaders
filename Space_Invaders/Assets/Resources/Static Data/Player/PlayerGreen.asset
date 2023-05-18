@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba42d16d6fe4b3c8bdca6db07dbd288, type: 3}
   m_Name: PlayerGreen
   m_EditorClassIdentifier: 
-  Type: 0
-  Path: 0
+  Type: 1
+  Path: 20
+  Speed: 35

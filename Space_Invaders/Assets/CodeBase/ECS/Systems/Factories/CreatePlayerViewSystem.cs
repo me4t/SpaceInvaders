@@ -13,6 +13,7 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsPool<View> viewPool;
 		private EcsPool<SpawnEvent> spawnEventPool;
 		private EcsPool<Player> playerPool;
+		private EcsPool<Position> positionPool;
 
 		public CreatePlayerViewSystem(IViewsFactory viewsFactory)
 		{
@@ -27,6 +28,7 @@ namespace CodeBase.ECS.Systems.Factories
 			viewPool = world.GetPool<View>();
 			playerPool = world.GetPool<Player>();
 			spawnEventPool = world.GetPool<SpawnEvent>();
+			positionPool = world.GetPool<Position>();
 		}
 
 		public void Run(IEcsSystems systems)
@@ -36,10 +38,12 @@ namespace CodeBase.ECS.Systems.Factories
 				ref var alien = ref playerPool.Get(entity);
 				ref var spawnEvent = ref spawnEventPool.Get(entity);
 				var alienView = viewsFactory.CreatePlayer(spawnEvent.Path);
-				
+
 				ref var view = ref viewPool.Add(entity);
 				view.Value = alienView;
 				view.Value.UpdatePosition(spawnEvent.Position);
+				ref var position = ref positionPool.Add(entity);
+				position.Value = spawnEvent.Position;
 			}
 		}
 	}

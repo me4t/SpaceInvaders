@@ -55,9 +55,9 @@ namespace CodeBase.ECS.Systems.LevelCreate
 			
 			var playerPool = world.GetPool<Player>();
 			ref var alien = ref playerPool.Add(entity);
-
-			
-			
+			var speedPool = world.GetPool<Speed>();
+			ref var speed =ref  speedPool.Add(entity);
+			speed.Value = config.Speed;
 			
 			return entity;
 		}
@@ -76,6 +76,14 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	public struct Player
 	{
 		public PlayerType PlayerType;
+	}
+	public struct Speed
+	{
+		public float Value;
+	}
+	public struct Position
+	{
+		public float3 Value;
 	}
 	public struct View
 	{
