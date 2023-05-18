@@ -1,3 +1,4 @@
+using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Infrastructure
@@ -15,6 +16,7 @@ namespace CodeBase.Infrastructure
 
 		public void Enter()
 		{
+			Debug.Log("Entered BootstrapState ");
 		}
 
 		private void InitializeServices()

@@ -33,6 +33,11 @@ namespace CodeBase.Infrastructure
 	{
 		
 	}
+
+	public class StaticDataService : IStaticDataService
+	{
+		
+	}
 	public class LoadLevelState : IPaylodedState<string>
 	{
 		private readonly IGameStateMachine gameStateMachine;
