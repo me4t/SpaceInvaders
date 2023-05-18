@@ -1,8 +1,8 @@
 namespace CodeBase
 {
-	public class Constants 
+	public static class Constants 
 	{
-	
+		public const string MainSceneName = "Game";
 	}
 }
 

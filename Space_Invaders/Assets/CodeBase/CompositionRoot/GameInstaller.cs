@@ -14,22 +14,15 @@ namespace CodeBase.CompositionRoot
 			BindStaticData();
 			BindGameStateMachine();
 		}
-
-		private void BindGameBootstrapperFactory()
-		{
-			Container
-				.BindFactory<GameBootstrapper, GameBootstrapper.Factory>()
-				.FromComponentInNewPrefabResource(Path.GameBootstrapper);
-		}
 		private void BindStaticData() => Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
+
+		private void BindSceneLoader() => Container.Bind<SceneLoader>().AsSingle();
 
 		private void BindCoroutineRunner() =>
 			Container
 				.Bind<CoroutineRunner>()
 				.FromComponentInNewPrefabResource(Path.CoroutineRunner)
 				.AsSingle();
-
-		private void BindSceneLoader() => Container.Bind<SceneLoader>().AsSingle();
 
 		private void BindGameStateMachine()
 		{
@@ -48,12 +41,5 @@ namespace CodeBase.CompositionRoot
 				.FromComponentInNewPrefabResource(Path.Curtain)
 				.AsSingle();
 		}
-	}
-
-	public static class Path
-	{
-		public static string GameBootstrapper = "Infrastructure/Bootstrapper";
-		public static string CoroutineRunner = "Infrastructure/CoroutineRunner";
-		public static string Curtain = "Infrastructure/Curtain";
 	}
 }

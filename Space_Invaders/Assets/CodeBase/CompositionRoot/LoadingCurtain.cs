@@ -31,9 +31,5 @@ namespace CodeBase.CompositionRoot
       
 			gameObject.SetActive(false);
 		}
-
-		public class Factory : PlaceholderFactory<LoadingCurtain>
-		{
-		}
 	}
 }
