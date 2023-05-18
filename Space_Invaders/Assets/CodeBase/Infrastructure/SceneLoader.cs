@@ -21,8 +21,9 @@ namespace CodeBase.Infrastructure
 
 			while (!waitNextScene.isDone)
 				yield return null;
-            
-			SceneManager.SetActiveScene(SceneManager.GetSceneByName(nextScene));
+
+			Scene scene = SceneManager.GetSceneByName(nextScene);
+			SceneManager.SetActiveScene(scene);
             
 			onLoaded?.Invoke();
 		}

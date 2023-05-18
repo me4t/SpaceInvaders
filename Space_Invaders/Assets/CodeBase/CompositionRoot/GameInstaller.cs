@@ -12,6 +12,8 @@ namespace CodeBase.CompositionRoot
 			BindSceneLoader();
 			BindLoadingCurtain();
 			BindStaticData();
+			BindGameplayEngine();
+
 			BindGameStateMachine();
 		}
 		private void BindStaticData() => Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
@@ -39,6 +41,15 @@ namespace CodeBase.CompositionRoot
 			Container
 				.Bind<LoadingCurtain>()
 				.FromComponentInNewPrefabResource(Path.Curtain)
+				.AsSingle();
+		}
+		private void BindGameplayEngine()
+		{
+			Container
+				.Bind<ICoreEngine>()
+				.FromSubContainerResolve()
+				.ByInstaller<InstallerECS>()
+				.WithKernel()
 				.AsSingle();
 		}
 	}
