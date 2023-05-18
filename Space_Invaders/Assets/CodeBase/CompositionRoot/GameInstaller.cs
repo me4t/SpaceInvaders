@@ -1,3 +1,5 @@
+using CodeBase.ECS.Systems.Factories;
+using CodeBase.ECS.Systems.LevelCreate;
 using CodeBase.Infrastructure;
 using CodeBase.ZenjectInstallers;
 using Zenject;
@@ -12,10 +14,15 @@ namespace CodeBase.CompositionRoot
 			BindSceneLoader();
 			BindLoadingCurtain();
 			BindStaticData();
+
+			BindViewsFactory();
+			
 			BindGameplayEngine();
 
 			BindGameStateMachine();
 		}
+		
+
 		private void BindStaticData() => Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
 
 		private void BindSceneLoader() => Container.Bind<SceneLoader>().AsSingle();
@@ -49,6 +56,15 @@ namespace CodeBase.CompositionRoot
 				.Bind<ICoreEngine>()
 				.FromSubContainerResolve()
 				.ByInstaller<InstallerECS>()
+				.WithKernel()
+				.AsSingle();
+		}
+		private void BindViewsFactory()
+		{
+			Container
+				.Bind<IViewsFactory>()
+				.FromSubContainerResolve()
+				.ByInstaller<ViewsFactoryInstaller>()
 				.WithKernel()
 				.AsSingle();
 		}

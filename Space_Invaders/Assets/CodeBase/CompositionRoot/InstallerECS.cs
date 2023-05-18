@@ -1,3 +1,4 @@
+using CodeBase.ECS.Systems.Factories;
 using CodeBase.Infrastructure;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.UnityEditor;
@@ -41,6 +42,7 @@ namespace CodeBase.CompositionRoot
 		private void BindCommonSystems()
 		{
 			BindSystem<CreateLevelSystem>();
+			BindSystem<CreateAlienViewSystem>();
 		}
 
 		void BindSystem<TSystem>() where TSystem : IEcsSystem => 

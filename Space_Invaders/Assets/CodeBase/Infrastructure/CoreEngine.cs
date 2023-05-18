@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CodeBase.Configs;
+using CodeBase.ECS.Systems.LevelCreate;
 using Leopotam.EcsLite;
 using UnityEngine;
 
@@ -84,10 +85,8 @@ namespace CodeBase.Infrastructure
 			}
 		}
 
-		void CreateLevelFromConfig(LevelConfig config)
-		{
-			//CreateLevelRequestFactory.Create(world, config);
-		}
+		void CreateLevelFromConfig(LevelConfig config) => 
+			LevelRequestFactory.Create(world, config);
 	}
 
 	public interface ICoreEngine

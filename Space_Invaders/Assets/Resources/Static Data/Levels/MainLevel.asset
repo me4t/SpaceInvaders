@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: MainLevel
   m_EditorClassIdentifier: 
   Key: Game
+  aliens:
+  - Position:
+      x: 0
+      y: 0
+      z: 0
+    AlienType: 1

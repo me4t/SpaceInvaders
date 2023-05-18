@@ -29,11 +29,17 @@ namespace CodeBase.Infrastructure
 			levels.TryGetValue(sceneName, out LevelConfig staticData)
 				? staticData
 				: null;
+
+		public AlienConfig ForAlien(AlienType id) =>
+			aliens.TryGetValue(id, out AlienConfig staticData)
+				? staticData
+				: null;
 	}
 
 	public interface IStaticDataService
 	{
 		void Load();
 		LevelConfig ForLevel(string sceneName);
+		AlienConfig ForAlien(AlienType id);
 	}
 }
