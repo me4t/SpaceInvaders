@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   Path: 1
+  Size: 3
+  Health: 5

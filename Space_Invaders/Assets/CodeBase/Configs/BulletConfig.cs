@@ -8,5 +8,8 @@ namespace CodeBase.Configs
 	{
 		public BulletType Type;
 		public ResourcePath Path;
+		public float Speed;
+		public float Size;
+		public float Damage =10;
 	}
 }

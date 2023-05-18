@@ -12,9 +12,12 @@ namespace CodeBase.Services.StaticData
 		private Dictionary<AlienType, AlienConfig> aliens;
 		private Dictionary<string, LevelConfig> levels;
 		private Dictionary<PlayerType, PlayerConfig> players;
+		private Dictionary<BulletType, BulletConfig> bullets;
+		
 		private const string AlienConfigsPath = "Static Data/Aliens";
 		private const string LevelsPath = "Static Data/Levels";
 		private const string PlayersPath = "Static Data/Player";
+		private const string BulletsPath = "Static Data/Bullets";
 
 		public void Load()
 		{
@@ -28,6 +31,10 @@ namespace CodeBase.Services.StaticData
 
 			players = Resources
 				.LoadAll<PlayerConfig>(PlayersPath)
+				.ToDictionary(x => x.Type, x => x);
+			
+			bullets = Resources
+				.LoadAll<BulletConfig>(BulletsPath)
 				.ToDictionary(x => x.Type, x => x);
 		}
 
@@ -43,6 +50,11 @@ namespace CodeBase.Services.StaticData
 
 		public PlayerConfig ForPlayer(PlayerType id) =>
 			players.TryGetValue(id, out PlayerConfig staticData)
+				? staticData
+				: null;
+
+		public BulletConfig ForBullet(BulletType id) =>
+			bullets.TryGetValue(id, out BulletConfig staticData)
 				? staticData
 				: null;
 	}

@@ -8,5 +8,7 @@ namespace CodeBase.Configs
 	{
 		public AlienType Type;
 		public ResourcePath Path;
+		public float Size;
+		public float Health = 5;
 	}
 }

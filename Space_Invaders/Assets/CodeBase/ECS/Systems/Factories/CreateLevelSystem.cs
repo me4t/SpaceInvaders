@@ -55,6 +55,9 @@ namespace CodeBase.ECS.Systems.Factories
 			data.Position = spawnPoint.Position;
 			data.AlienType = spawnPoint.AlienType;
 			data.PrefabPath = alienConfig.Path.ConvertToString();
+			data.BodySize = alienConfig.Size;
+			data.Health = alienConfig.Health;
+
 			AlienFactory.Create(world, data);
 		}
 		private void CreatePlayer(PlayerSpawnPoint spawnPoint)
@@ -65,6 +68,8 @@ namespace CodeBase.ECS.Systems.Factories
 			data.Type = spawnPoint.PlayerType;
 			data.PrefabPath = alienConfig.Path.ConvertToString();
 			data.Speed = alienConfig.Speed;
+			data.GunDirection = alienConfig.GunDirection;
+			data.BodySize = alienConfig.Size;
 			PlayerFactory.Create(world, data);
 		}
 	}
@@ -75,6 +80,8 @@ namespace CodeBase.ECS.Systems.Factories
 		public float3 Position;
 		public AlienType AlienType;
 		public string PrefabPath;
+		public float BodySize;
+		public float Health;
 	}
 	public class PlayerCreateData
 	{
@@ -82,6 +89,16 @@ namespace CodeBase.ECS.Systems.Factories
 		public PlayerType Type;
 		public string PrefabPath;
 		public float Speed;
+		public float3 GunDirection;
+		public float BodySize;
+	}
+	public class BulletCreateData
+	{
+		public float3 Position;
+		public string PrefabPath;
+		public float Speed;
+		public float BodySize;
+		public float Damage;
 	}
 	
 }

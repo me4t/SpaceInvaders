@@ -9,5 +9,6 @@ namespace CodeBase.Services.StaticData
 		LevelConfig ForLevel(string sceneName);
 		AlienConfig ForAlien(AlienType id);
 		PlayerConfig ForPlayer(PlayerType spawnPointPlayerType);
+		BulletConfig ForBullet(BulletType ice);
 	}
 }

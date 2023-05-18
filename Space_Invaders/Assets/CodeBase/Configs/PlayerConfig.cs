@@ -1,4 +1,5 @@
 using CodeBase.Enums;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace CodeBase.Configs
@@ -9,5 +10,7 @@ namespace CodeBase.Configs
 		public PlayerType Type; 
 		public ResourcePath Path;
 		public float Speed = 3;
+		public float3 GunDirection = new float3(0,0,1);
+		public float Size;
 	}
 }

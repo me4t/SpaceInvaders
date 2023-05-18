@@ -8,9 +8,9 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	{
 		public void DestroyView() => Destroy(gameObject);
 
-		public void UpdatePosition(float3 position)
-		{
-		}
+		public void UpdatePosition(float3 position) => 
+			transform.position = position;
+
 		public class Factory : PlaceholderFactory<string, BulletView>
 		{
 		}
