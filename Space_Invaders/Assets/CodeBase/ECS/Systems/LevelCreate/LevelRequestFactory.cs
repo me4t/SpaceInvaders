@@ -42,6 +42,27 @@ namespace CodeBase.ECS.Systems.LevelCreate
 		}
 
 	}
+	public class PlayerFactory
+	{
+		public static int Create(EcsWorld world,PlayerCreateData config)
+		{
+			var entity = world.NewEntity();
+
+			var positionPool = world.GetPool<SpawnEvent>();
+			ref var position =ref  positionPool.Add(entity);
+			position.Position = config.Position;
+			position.Path = config.PrefabPath;
+			
+			var playerPool = world.GetPool<Player>();
+			ref var alien = ref playerPool.Add(entity);
+
+			
+			
+			
+			return entity;
+		}
+
+	}
 
 	public struct SpawnEvent
 	{
@@ -51,6 +72,10 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	public struct Alien
 	{
 		public AlienType AlienType;
+	}
+	public struct Player
+	{
+		public PlayerType PlayerType;
 	}
 	public struct View
 	{

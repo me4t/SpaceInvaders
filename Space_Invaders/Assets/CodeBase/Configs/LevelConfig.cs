@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CodeBase.Enums;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CodeBase.Configs
 {
@@ -10,6 +11,7 @@ namespace CodeBase.Configs
 	public class LevelConfig : ScriptableObject
 	{
 		 public string Key;
+		 public PlayerSpawnPoint PlayerSpawnPoint;
 		 public List<AlienSpawnPoint> aliens;
 	}
 
@@ -18,5 +20,12 @@ namespace CodeBase.Configs
 	{
 		public float3 Position;
 		public AlienType AlienType;
+	}
+	
+	[Serializable]
+	public class PlayerSpawnPoint
+	{
+		public float3 PlayerInitialPoint;
+		 public PlayerType PlayerType;
 	}
 }

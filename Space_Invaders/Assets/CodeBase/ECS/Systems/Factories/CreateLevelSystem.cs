@@ -39,6 +39,9 @@ namespace CodeBase.ECS.Systems.Factories
 				
 				foreach (var alien in levelConfig.aliens) 
 					CreateAlien(alien);
+				
+				CreatePlayer(levelConfig.PlayerSpawnPoint);
+				
 				requestPool.Del(entity);
 				Debug.Log("CreateLeveL System");
 			}
@@ -54,6 +57,15 @@ namespace CodeBase.ECS.Systems.Factories
 			data.PrefabPath = alienConfig.Path.ConvertToString();
 			AlienFactory.Create(world, data);
 		}
+		private void CreatePlayer(PlayerSpawnPoint spawnPoint)
+		{
+			var alienConfig = staticDataService.ForPlayer(spawnPoint.PlayerType);
+			PlayerCreateData data = new PlayerCreateData();
+			data.Position = spawnPoint.PlayerInitialPoint;
+			data.Type = spawnPoint.PlayerType;
+			data.PrefabPath = alienConfig.Path.ConvertToString();
+			PlayerFactory.Create(world, data);
+		}
 	}
 
 
@@ -61,6 +73,12 @@ namespace CodeBase.ECS.Systems.Factories
 	{
 		public float3 Position;
 		public AlienType AlienType;
+		public string PrefabPath;
+	}
+	public class PlayerCreateData
+	{
+		public float3 Position;
+		public PlayerType Type;
 		public string PrefabPath;
 	}
 	

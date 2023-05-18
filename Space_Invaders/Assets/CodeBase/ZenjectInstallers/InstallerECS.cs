@@ -44,6 +44,7 @@ namespace CodeBase.ZenjectInstallers
 		{
 			BindSystem<CreateLevelSystem>();
 			BindSystem<CreateAlienViewSystem>();
+			BindSystem<CreatePlayerViewSystem>();
 		}
 
 		void BindSystem<TSystem>() where TSystem : IEcsSystem => 

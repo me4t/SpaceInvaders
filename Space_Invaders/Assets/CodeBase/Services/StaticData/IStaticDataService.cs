@@ -8,5 +8,6 @@ namespace CodeBase.Services.StaticData
 		void Load();
 		LevelConfig ForLevel(string sceneName);
 		AlienConfig ForAlien(AlienType id);
+		PlayerConfig ForPlayer(PlayerType spawnPointPlayerType);
 	}
 }

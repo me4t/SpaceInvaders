@@ -4,7 +4,7 @@ using Leopotam.EcsLite;
 
 namespace CodeBase.ECS.Systems.Factories
 {
-	public class CreateAlienViewSystem : IEcsInitSystem, IEcsRunSystem
+	public class CreatePlayerViewSystem : IEcsInitSystem, IEcsRunSystem
 	{
 		private readonly IViewsFactory viewsFactory;
 		private readonly IStaticDataService staticDataService;
@@ -12,9 +12,9 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsFilter filter;
 		private EcsPool<View> viewPool;
 		private EcsPool<SpawnEvent> spawnEventPool;
-		private EcsPool<Alien> alienPool;
+		private EcsPool<Player> playerPool;
 
-		public CreateAlienViewSystem(IViewsFactory viewsFactory)
+		public CreatePlayerViewSystem(IViewsFactory viewsFactory)
 		{
 			this.viewsFactory = viewsFactory;
 		}
@@ -22,10 +22,10 @@ namespace CodeBase.ECS.Systems.Factories
 		public void Init(IEcsSystems systems)
 		{
 			world = systems.GetWorld();
-			filter = world.Filter<Alien>().Exc<View>().End();
+			filter = world.Filter<Player>().Exc<View>().End();
 
 			viewPool = world.GetPool<View>();
-			alienPool = world.GetPool<Alien>();
+			playerPool = world.GetPool<Player>();
 			spawnEventPool = world.GetPool<SpawnEvent>();
 		}
 
@@ -33,9 +33,9 @@ namespace CodeBase.ECS.Systems.Factories
 		{
 			foreach (var entity in filter)
 			{
-				ref var alien = ref alienPool.Get(entity);
+				ref var alien = ref playerPool.Get(entity);
 				ref var spawnEvent = ref spawnEventPool.Get(entity);
-				var alienView = viewsFactory.CreateAlien(spawnEvent.Path);
+				var alienView = viewsFactory.CreatePlayer(spawnEvent.Path);
 				
 				ref var view = ref viewPool.Add(entity);
 				view.Value = alienView;
