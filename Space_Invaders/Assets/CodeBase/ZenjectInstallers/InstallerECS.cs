@@ -43,6 +43,9 @@ namespace CodeBase.ZenjectInstallers
 		private void BindCommonSystems()
 		{
 			BindSystem<PlayerMoveSystem>();
+			BindSystem<MovementTimerSystem>();
+			BindSystem<MoveAliensSystem>();
+
 			BindSystem<CreateLevelSystem>();
 			BindSystem<CreateAlienViewSystem>();
 			BindSystem<CreatePlayerViewSystem>();

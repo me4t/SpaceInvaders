@@ -57,6 +57,9 @@ namespace CodeBase.ECS.Systems.Factories
 			data.PrefabPath = alienConfig.Path.ConvertToString();
 			data.BodySize = alienConfig.Size;
 			data.Health = alienConfig.Health;
+			data.Speed = alienConfig.Speed;
+			data.GunDirection = alienConfig.GunDirection;
+			data.MoveDirection = alienConfig.MoveDirection;
 
 			AlienFactory.Create(world, data);
 		}
@@ -82,6 +85,9 @@ namespace CodeBase.ECS.Systems.Factories
 		public string PrefabPath;
 		public float BodySize;
 		public float Health;
+		public float Speed;
+		public float3 GunDirection;
+		public float3 MoveDirection;
 	}
 	public class PlayerCreateData
 	{

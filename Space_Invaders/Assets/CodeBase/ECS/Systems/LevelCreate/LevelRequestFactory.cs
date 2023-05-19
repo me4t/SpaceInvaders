@@ -45,6 +45,18 @@ namespace CodeBase.ECS.Systems.LevelCreate
 			health.Current = config.Health;
 			health.Max = config.Health;
 			
+			var speedPool = world.GetPool<Speed>();
+			ref var speed = ref speedPool.Add(entity);
+			speed.Value = config.Speed;
+			
+			var gunPool = world.GetPool<Gun>();
+			ref var gun =ref  gunPool.Add(entity);
+			gun.Direction = config.GunDirection;
+			
+			var moveDirPool = world.GetPool<MoveDirection>();
+			ref var move =ref  moveDirPool.Add(entity);
+			move.Direction = config.MoveDirection;
+			
 			return entity;
 		}
 	}
@@ -152,6 +164,13 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	{
 		public float Value;
 		public EcsPackedEntity Target;
+	}
+	public struct MoveEvent
+	{
+	}
+	public struct MoveDirection
+	{
+		public float3 Direction;
 	}
 
 	public struct DamageDealer
