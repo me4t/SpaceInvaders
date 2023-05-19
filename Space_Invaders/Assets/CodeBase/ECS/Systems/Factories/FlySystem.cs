@@ -82,7 +82,7 @@ namespace CodeBase.ECS.Systems.Factories
 					var alienPosition = positionPool.Get(alien).Value;
 					var alienSize = bodySizePool.Get(alien).Radius;
 
-					if (DoSpheresIntersect(bulletPosition, alienPosition, bulletSize, alienSize))
+					if (IsSpheresIntersect(bulletPosition, alienPosition, bulletSize, alienSize))
 					{
 
 						var newEntity = world.NewEntity();
@@ -98,12 +98,13 @@ namespace CodeBase.ECS.Systems.Factories
 			}
 		}
 
-		bool DoSpheresIntersect(Vector3 pos1, Vector3 pos2, float radius1, float radius2)
+		private bool IsSpheresIntersect(float3 pos1, float3 pos2, float radius1, float radius2)
 		{
 			float radius = radius1 + radius2;
-			Vector3 delta = pos2 - pos1;
-			return delta.sqrMagnitude < radius * radius;
+			var delta = pos2 - pos1;
+			return MathHelpers.SqrMagnitude(delta) < radius * radius;
 		}
+		
 	}
 
 	public class DamageSystem : IEcsInitSystem, IEcsRunSystem

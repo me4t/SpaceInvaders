@@ -67,5 +67,9 @@ namespace CodeBase.ECS.Systems.Factories
 				current.y + deltaY / dist * maxDistanceDelta,
 				current.z + deltaZ / dist * maxDistanceDelta);
 		}
+		public static float SqrMagnitude(float3 a)
+		{
+			return a.x * a.x + a.y * a.y + a.z * a.z;
+		}
 	}
 }
