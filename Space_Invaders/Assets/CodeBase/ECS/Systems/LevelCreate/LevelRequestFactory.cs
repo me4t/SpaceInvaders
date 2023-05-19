@@ -183,6 +183,10 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	{
 		
 	}
+	public struct RoundPassed
+	{
+		
+	}
 	
 
 	public struct Player

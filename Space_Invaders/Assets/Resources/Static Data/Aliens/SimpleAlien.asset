@@ -16,7 +16,7 @@ MonoBehaviour:
   Path: 1
   Size: 3
   Health: 5
-  Speed: 200
+  Speed: 300
   GunDirection:
     x: 0
     y: 0

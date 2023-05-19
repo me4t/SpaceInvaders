@@ -56,10 +56,13 @@ namespace CodeBase.ZenjectInstallers
 			BindSystem<DamageSystem>();
 			BindSystem<LootSpawnSystem>();
 			BindSystem<DeathSystem>();
-			BindSystem<CheckAlienDeath>();
+			BindSystem<CheckRoundComplete>();
 			BindSystem<ScoreSystem>();
+			BindSystem<SetNextRoundSystem>();
 			BindSystem<UpdateRoundSystem>();
+			BindSystem<DestroyViewAliensSystem>();
 			BindSystem<UpdateViewPositionSystem>();
+			BindSystem<CleanUpSystem>();
 		}
 
 		void BindSystem<TSystem>() where TSystem : IEcsSystem => 

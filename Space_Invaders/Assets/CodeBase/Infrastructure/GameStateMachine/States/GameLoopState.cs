@@ -36,7 +36,7 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 		{
 			if (coreEngine.GameOver)
 			{
-					Debug.Log("game over");
+				Debug.Log("game over");
 				return;
 			}
 
