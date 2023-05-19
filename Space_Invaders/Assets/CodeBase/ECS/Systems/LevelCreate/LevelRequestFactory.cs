@@ -31,11 +31,15 @@ namespace CodeBase.ECS.Systems.LevelCreate
 		{
 			var entity = world.NewEntity();
 
-			var positionPool = world.GetPool<SpawnEvent>();
-			ref var position = ref positionPool.Add(entity);
-			position.Position = config.Position;
-			position.Path = config.PrefabPath;
+			var spawnEventPool = world.GetPool<SpawnEvent>();
+			ref var spawnEvent = ref spawnEventPool.Add(entity);
+			spawnEvent.Position = config.Position;
+			spawnEvent.Path = config.PrefabPath;
 
+			var positionPool = world.GetPool<Position>();
+			ref var position = ref positionPool.Add(entity);
+			position.Value = spawnEvent.Position;
+			
 			var alienPool = world.GetPool<Alien>();
 			ref var alien = ref alienPool.Add(entity);
 
@@ -88,10 +92,14 @@ namespace CodeBase.ECS.Systems.LevelCreate
 		{
 			var entity = world.NewEntity();
 
-			var positionPool = world.GetPool<SpawnEvent>();
+			var spawnEventPool = world.GetPool<SpawnEvent>();
+			ref var spawnEvent = ref spawnEventPool.Add(entity);
+			spawnEvent.Position = config.Position;
+			spawnEvent.Path = config.PrefabPath;
+
+			var positionPool = world.GetPool<Position>();
 			ref var position = ref positionPool.Add(entity);
-			position.Position = config.Position;
-			position.Path = config.PrefabPath;
+			position.Value = spawnEvent.Position;
 
 			var playerPool = world.GetPool<Player>();
 			ref var alien = ref playerPool.Add(entity);
@@ -122,10 +130,14 @@ namespace CodeBase.ECS.Systems.LevelCreate
 		{
 			var entity = world.NewEntity();
 
-			var positionPool = world.GetPool<SpawnEvent>();
+			var spawnEventPool = world.GetPool<SpawnEvent>();
+			ref var spawnEvent = ref spawnEventPool.Add(entity);
+			spawnEvent.Position = config.Position;
+			spawnEvent.Path = config.PrefabPath;
+
+			var positionPool = world.GetPool<Position>();
 			ref var position = ref positionPool.Add(entity);
-			position.Position = config.Position;
-			position.Path = config.PrefabPath;
+			position.Value = spawnEvent.Position;
 
 			var playerPool = world.GetPool<Bullet>();
 			ref var alien = ref playerPool.Add(entity);
@@ -154,10 +166,14 @@ namespace CodeBase.ECS.Systems.LevelCreate
 			ref var loot = ref lootPool.Add(entity);
 			
 
-			var positionPool = world.GetPool<SpawnEvent>();
+			var spawnEventPool = world.GetPool<SpawnEvent>();
+			ref var spawnEvent = ref spawnEventPool.Add(entity);
+			spawnEvent.Position = config.Position;
+			spawnEvent.Path = config.PrefabPath;
+
+			var positionPool = world.GetPool<Position>();
 			ref var position = ref positionPool.Add(entity);
-			position.Position = config.Position;
-			position.Path = config.PrefabPath;
+			position.Value = spawnEvent.Position;
 
 			return entity;
 		}

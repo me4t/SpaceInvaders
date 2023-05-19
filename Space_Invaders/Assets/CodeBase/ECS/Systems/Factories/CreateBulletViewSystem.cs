@@ -13,7 +13,6 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsPool<View> viewPool;
 		private EcsPool<SpawnEvent> spawnEventPool;
 		private EcsPool<Bullet> bulletPool;
-		private EcsPool<Position> positionPool;
 
 		public CreateBulletViewSystem(IViewsFactory viewsFactory)
 		{
@@ -27,7 +26,6 @@ namespace CodeBase.ECS.Systems.Factories
 
 			viewPool = world.GetPool<View>();
 			spawnEventPool = world.GetPool<SpawnEvent>();
-			positionPool = world.GetPool<Position>();
 		}
 
 		public void Run(IEcsSystems systems)
@@ -38,8 +36,7 @@ namespace CodeBase.ECS.Systems.Factories
 				ref var view = ref viewPool.Add(entity);
 				view.Value = viewsFactory.CreateBullet(spawnEvent.Path);
 				view.Value.UpdatePosition(spawnEvent.Position);
-				ref var position = ref positionPool.Add(entity);
-				position.Value = spawnEvent.Position;
+				spawnEventPool.Del(entity);
 			}
 		}
 	}

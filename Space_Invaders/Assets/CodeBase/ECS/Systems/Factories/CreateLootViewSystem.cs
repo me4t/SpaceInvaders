@@ -13,8 +13,6 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsPool<View> viewPool;
 		private EcsPool<SpawnEvent> spawnEventPool;
 		private EcsPool<Loot> lootPool;
-		private EcsPool<Position> positionPool;
-
 		public CreateLootViewSystem(IViewsFactory viewsFactory)
 		{
 			this.viewsFactory = viewsFactory;
@@ -26,25 +24,18 @@ namespace CodeBase.ECS.Systems.Factories
 			filter = world.Filter<Loot>().Exc<View>().End();
 
 			viewPool = world.GetPool<View>();
-			lootPool = world.GetPool<Loot>();
 			spawnEventPool = world.GetPool<SpawnEvent>();
-			positionPool = world.GetPool<Position>();
 		}
 
 		public void Run(IEcsSystems systems)
 		{
 			foreach (var entity in filter)
 			{
-				ref var alien = ref lootPool.Get(entity);
 				ref var spawnEvent = ref spawnEventPool.Get(entity);
-				var alienView = viewsFactory.CreateLoot(spawnEvent.Path);
 
 				ref var view = ref viewPool.Add(entity);
-				view.Value = alienView;
+				view.Value = viewsFactory.CreateLoot(spawnEvent.Path);
 				view.Value.UpdatePosition(spawnEvent.Position);
-				ref var position = ref positionPool.Add(entity);
-				position.Value = spawnEvent.Position;
-				
 				spawnEventPool.Del(entity);
 			}
 		}
