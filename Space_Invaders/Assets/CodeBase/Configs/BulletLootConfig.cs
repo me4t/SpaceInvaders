@@ -8,5 +8,7 @@ namespace CodeBase.Configs
 	{
 		public BulletType Type;
 		public ResourcePath Path;
+		public float BodySize = 3;
+		public int Count = 1;
 	}
 }

@@ -52,7 +52,10 @@ namespace CodeBase.ZenjectInstallers
 			BindSystem<PlayerShootSystem>();
 			BindSystem<CreateBulletViewSystem>();
 			BindSystem<FlySystem>();
-			BindSystem<CheckCollisionSystem>();
+			BindSystem<CheckBulletCollisionSystem>();
+			BindSystem<CheckLootCollisionSystem>();
+			BindSystem<PickUpLootSystem>();
+			BindSystem<HittableSystem>();
 			BindSystem<DamageSystem>();
 			BindSystem<LootSpawnSystem>();
 			BindSystem<DeathSystem>();

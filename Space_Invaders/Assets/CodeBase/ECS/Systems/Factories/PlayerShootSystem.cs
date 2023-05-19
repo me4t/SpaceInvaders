@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using CodeBase.ECS.Systems.LevelCreate;
 using CodeBase.Enums;
 using CodeBase.Services.SceneLoader;
@@ -16,10 +18,10 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsPool<Position> positionPool;
 		private EcsPool<FlyTo> flyToPool;
 		private EcsPool<Gun> gunPool;
-		private EcsPool<BulletOwner> bulletOwnerPool;
+		private EcsPool<FireBulletOwner> bulletOwnerPool;
 		private EcsPool<UpdateBulletCountEvent> shootEventPool;
 
-		public PlayerShootSystem(IStaticDataService staticDataService,IInputService inputService)
+		public PlayerShootSystem(IStaticDataService staticDataService, IInputService inputService)
 		{
 			this.staticDataService = staticDataService;
 			this.inputService = inputService;
@@ -33,7 +35,7 @@ namespace CodeBase.ECS.Systems.Factories
 			positionPool = world.GetPool<Position>();
 			flyToPool = world.GetPool<FlyTo>();
 			gunPool = world.GetPool<Gun>();
-			bulletOwnerPool = world.GetPool<BulletOwner>();
+			bulletOwnerPool = world.GetPool<FireBulletOwner>();
 			shootEventPool = world.GetPool<UpdateBulletCountEvent>();
 		}
 
@@ -43,31 +45,42 @@ namespace CodeBase.ECS.Systems.Factories
 			{
 				ref var bulletOwner = ref bulletOwnerPool.Get(entity);
 
-				if (CanFire(bulletOwner))
-				{
-					var bulletConfig = staticDataService.ForBullet(bulletOwner.Type);
-					var bulletData = new BulletCreateData();
-					bulletData.Speed = bulletConfig.Speed;
-					bulletData.PrefabPath = bulletConfig.Path.ConvertToString();
-					bulletData.BodySize = bulletConfig.Size;
-					bulletData.Damage = bulletConfig.Damage;
-					
-					ref var position = ref positionPool.Get(entity);
-					bulletData.Position = position.Value;
-					var bulletEntity = BulletFactory.Create(world, bulletData);
-					ref var flyTo = ref flyToPool.Add(bulletEntity);
-					ref var playerGun = ref gunPool.Get(entity);
-
-					flyTo.Value = playerGun.Direction;
-					bulletOwner.BulletCount--;
-					shootEventPool.Add(entity);
-				}
+				if (inputService.IsIceFire)
+					Shoot(BulletType.Ice, entity, bulletOwner.Bullets);
+				else if (inputService.IsFireMagic)
+					Shoot(BulletType.Fire, entity, bulletOwner.Bullets);
 			}
 		}
 
-		private bool CanFire(BulletOwner bulletOwner)
+		private void Shoot(BulletType bullet, int entity, Dictionary<BulletType, int> bullets)
 		{
-			return inputService.IsFire && bulletOwner.BulletCount > 0;
+			if (NoAmmo(bullet, bullets)) return;
+
+			var bulletConfig = staticDataService.ForBullet(bullet);
+			var bulletData = new BulletCreateData
+			{
+				Speed = bulletConfig.Speed,
+				PrefabPath = bulletConfig.Path.ConvertToString(),
+				BodySize = bulletConfig.Size,
+				Damage = bulletConfig.Damage
+			};
+
+			ref var position = ref positionPool.Get(entity);
+			bulletData.Position = position.Value;
+			var bulletEntity = BulletFactory.Create(world, bulletData);
+			ref var flyTo = ref flyToPool.Add(bulletEntity);
+			ref var playerGun = ref gunPool.Get(entity);
+
+			flyTo.Value = playerGun.Direction;
+			bullets[bullet] -= 1;
+			shootEventPool.Add(entity);
+		}
+
+		private bool NoAmmo(BulletType bullet, Dictionary<BulletType, int> bullets)
+		{
+			if (!bullets.ContainsKey(bullet)) return true;
+			if (bullets[bullet] == 0) return true;
+			return false;
 		}
 	}
 }

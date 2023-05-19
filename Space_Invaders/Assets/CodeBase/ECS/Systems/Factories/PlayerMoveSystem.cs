@@ -54,6 +54,12 @@ namespace CodeBase.ECS.Systems.Factories
 
 	public class MathHelpers
 	{
+		public static bool IsSpheresIntersect(float3 pos1, float3 pos2, float radius1, float radius2)
+		{
+			float radius = radius1 + radius2;
+			var delta = pos2 - pos1;
+			return MathHelpers.SqrMagnitude(delta) < radius * radius;
+		}
 		public static float3 MoveTowards(float3 current, float3 target, float maxDistanceDelta)
 		{
 			float deltaX = target.x - current.x;

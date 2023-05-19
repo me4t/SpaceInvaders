@@ -1,22 +1,20 @@
 using CodeBase.ECS.Systems.LevelCreate;
-using CodeBase.Services.StaticData;
 using Leopotam.EcsLite;
-using Unity.Mathematics;
+using UnityEngine;
 
 namespace CodeBase.ECS.Systems.Factories
 {
-	public class CheckCollisionSystem : IEcsInitSystem, IEcsRunSystem
+	public class CheckBulletCollisionSystem : IEcsInitSystem, IEcsRunSystem
 	{
-		private readonly IStaticDataService staticDataService;
 		private EcsWorld world;
 		private EcsFilter filter;
 		private EcsPool<SpawnEvent> spawnEventPool;
 		private EcsPool<Bullet> bulletPool;
 		private EcsPool<Position> positionPool;
 		private EcsFilter alienFilter;
-		private EcsPool<Damage> damagePool;
-		private EcsPool<DamageDealer> damageDealerPool;
 		private EcsPool<BodySize> bodySizePool;
+		private EcsPool<CollisionHittableWithBullet> collisionEventPool;
+		private EcsPool<Used> usedPool;
 
 
 		public void Init(IEcsSystems systems)
@@ -26,9 +24,8 @@ namespace CodeBase.ECS.Systems.Factories
 			alienFilter = world.Filter<Alien>().Inc<View>().Exc<Dead>().End();
 
 			positionPool = world.GetPool<Position>();
-			damagePool = world.GetPool<Damage>();
-			damageDealerPool = world.GetPool<DamageDealer>();
 			bodySizePool = world.GetPool<BodySize>();
+			collisionEventPool = world.GetPool<CollisionHittableWithBullet>();
 		}
 
 		public void Run(IEcsSystems systems)
@@ -42,28 +39,24 @@ namespace CodeBase.ECS.Systems.Factories
 					var alienPosition = positionPool.Get(alien).Value;
 					var alienSize = bodySizePool.Get(alien).Radius;
 
-					if (IsSpheresIntersect(bulletPosition, alienPosition, bulletSize, alienSize))
+					if (MathHelpers.IsSpheresIntersect(bulletPosition, alienPosition, bulletSize, alienSize))
 					{
+						Debug.Log("Was collision");
+						var collision = world.NewEntity();
+						ref var collisionHittableWithBullet = ref collisionEventPool.Add(collision);
+						collisionHittableWithBullet.Bullet = world.PackEntity(entity);
+						collisionHittableWithBullet.Hittable = world.PackEntity(alien);
 
-						var newEntity = world.NewEntity();
+						/*var newEntity = world.NewEntity();
 						ref var damage = ref damagePool.Add(newEntity);
 						ref var damageDealer = ref damageDealerPool.Get(entity);
 						damage.Value = damageDealer.Value;
-						damage.Target = world.PackEntity(alien);
-						world.DelEntity(entity);
+						damage.Target = world.PackEntity(alien);*/
 
 						break;
 					}
 				}
 			}
 		}
-
-		private bool IsSpheresIntersect(float3 pos1, float3 pos2, float radius1, float radius2)
-		{
-			float radius = radius1 + radius2;
-			var delta = pos2 - pos1;
-			return MathHelpers.SqrMagnitude(delta) < radius * radius;
-		}
-		
 	}
 }

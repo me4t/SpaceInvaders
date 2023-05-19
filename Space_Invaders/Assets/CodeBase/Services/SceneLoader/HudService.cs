@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
 using CodeBase.Enums;
 using TMPro;
 using UnityEngine;
@@ -8,7 +11,7 @@ namespace CodeBase.Services.SceneLoader
 	{
 		void UpdateScore(float current);
 		void UpdateRound(int current);
-		void UpdateBullets(int current, BulletType bulletType);
+		void UpdateBullets(Dictionary<BulletType, int> bulletOwnerBullets);
 	}
 
 	public class HudService : MonoBehaviour, IHudService
@@ -16,6 +19,7 @@ namespace CodeBase.Services.SceneLoader
 		[SerializeField] private TextMeshProUGUI Score;
 		[SerializeField] private TextMeshProUGUI Round;
 		[SerializeField] private TextMeshProUGUI Bullets;
+		private StringBuilder stringBuilder;
 
 		public void UpdateScore(float current)
 		{
@@ -27,9 +31,17 @@ namespace CodeBase.Services.SceneLoader
 			Round.text = $"Round: {current}";
 		}
 
-		public void UpdateBullets(int current, BulletType bulletType)
+		public void UpdateBullets(Dictionary<BulletType, int> bullets)
 		{
-			Bullets.text = $"Bullets : {bulletType.ConvertToString()} \nCount : {current}";
+			stringBuilder = new StringBuilder();
+			foreach (var count in bullets.Keys)
+			{
+				stringBuilder.Append("Bullets : ");
+				stringBuilder.Append($"Bullets : {count.ToString()} \nCount : {bullets[count]}");
+			}
+			Bullets.text = stringBuilder.ToString();
+
 		}
+
 	}
 }

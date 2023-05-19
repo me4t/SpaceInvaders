@@ -121,12 +121,12 @@ namespace CodeBase.ECS.Systems.Factories
 	{
 		public float3 Position;
 		public string PrefabPath;
-		public LootId LootId;
+		public float BodySize;
+	}
+	public class BulletLootData:LootData
+	{
+		public BulletType BulletType;
+		public int Count;
 	}
 
-	public enum LootId
-	{
-		Bullet = 1,
-		Other = 2,
-	}
 }

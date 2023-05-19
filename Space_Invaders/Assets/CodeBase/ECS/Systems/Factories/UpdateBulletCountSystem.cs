@@ -11,7 +11,7 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsFilter filter;
 		private EcsPool<SpawnEvent> spawnEventPool;
 		private EcsPool<Bullet> bulletPool;
-		private EcsPool<BulletOwner> bulletOwnerPool;
+		private EcsPool<FireBulletOwner> bulletOwnerPool;
 		private EcsFilter filterPlayer;
 		private EcsPool<UpdateBulletCountEvent> shootEventPool;
 
@@ -26,7 +26,7 @@ namespace CodeBase.ECS.Systems.Factories
 			world = systems.GetWorld();
 			filter = world.Filter<Player>().Inc<UpdateBulletCountEvent>().End();
 			filterPlayer = world.Filter<Player>().End();
-			bulletOwnerPool = world.GetPool<BulletOwner>();
+			bulletOwnerPool = world.GetPool<FireBulletOwner>();
 			shootEventPool = world.GetPool<UpdateBulletCountEvent>();
 			
 		}
@@ -38,7 +38,7 @@ namespace CodeBase.ECS.Systems.Factories
 				ref var bulletOwner = ref bulletOwnerPool.Get(entity);
 				shootEventPool.Del(entity);
 				
-				hudService.UpdateBullets(bulletOwner.BulletCount,bulletOwner.Type);
+				hudService.UpdateBullets(bulletOwner.Bullets);
 			}
 		}
 	}

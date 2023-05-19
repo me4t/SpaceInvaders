@@ -13,7 +13,7 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsPool<SpawnEvent> spawnEventPool;
 		private EcsPool<Bullet> bulletPool;
 		private EcsPool<ScoreLoot> scoreLootPool;
-		private EcsPool<BulletLoot> bulletLootPool;
+		private EcsPool<SpawnBulletLoot> bulletLootPool;
 		private EcsPool<Position> positionPool;
 
 
@@ -25,7 +25,7 @@ namespace CodeBase.ECS.Systems.Factories
 		{
 			world = systems.GetWorld();
 			filter = world.Filter<DeathEvent>().End();
-			bulletLootPool = world.GetPool<BulletLoot>();
+			bulletLootPool = world.GetPool<SpawnBulletLoot>();
 			positionPool = world.GetPool<Position>();
 		}
 
@@ -35,14 +35,16 @@ namespace CodeBase.ECS.Systems.Factories
 			{
 				if (bulletLootPool.Has(entity))
 				{
-					ref var scoreLoot = ref bulletLootPool.Get(entity);
+					ref var loot = ref bulletLootPool.Get(entity);
 					ref var position = ref positionPool.Get(entity);
-					var bulletConfig = staticDataService.ForBulletLoot(scoreLoot.Type);
+					var config = staticDataService.ForBulletLoot(loot.Type);
 
-					var lootData = new LootData();
-					lootData.PrefabPath = bulletConfig.Path.ConvertToString();
-					lootData.LootId = LootId.Bullet;
+					var lootData = new BulletLootData();
+					lootData.PrefabPath = config.Path.ConvertToString();
 					lootData.Position = position.Value;
+					lootData.BodySize = config.BodySize;
+					lootData.BulletType = loot.Type;
+					lootData.Count = config.Count;
 					LootFactory.Create(world, lootData);
 				}
 			}

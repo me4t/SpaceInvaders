@@ -30,14 +30,6 @@ namespace CodeBase.Services.SceneLoader
 		}
 	}
 
-	public class StandaloneInputService : IInputService
-	{
-		public float Horizontal => Input.GetAxis("Horizontal");
-		public float Vertical => Input.GetAxis("Vertical");
-		public Vector2 Axis => new Vector2(Horizontal, Vertical);
-		public bool IsFire => Input.GetKeyDown(KeyCode.O);
-	}
-
 	public class TimeService : ITimeService
 	{
 		public float DeltaTime => Time.deltaTime;
@@ -54,6 +46,7 @@ namespace CodeBase.Services.SceneLoader
 		float Horizontal { get; }
 		float Vertical { get; }
 		Vector2 Axis { get;}
-		bool IsFire { get;}
+		bool IsIceFire { get;}
+		bool IsFireMagic { get;}
 	}
 }

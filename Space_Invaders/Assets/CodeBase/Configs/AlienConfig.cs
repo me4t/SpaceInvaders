@@ -13,14 +13,17 @@ namespace CodeBase.Configs
 		public float Size;
 		public float Health = 5;
 		public float Speed = 3;
-		public float3 GunDirection = new float3(0,0,-1);
-		public float3 MoveDirection = new float3(0,0,-1);
+		public float3 GunDirection = new float3(0, 0, -1);
+		public float3 MoveDirection = new float3(0, 0, -1);
 		public float Score = 15;
+
 		public List<BulletType> BulletLoot = new List<BulletType>()
 		{
 			BulletType.Fire,
 			BulletType.Ice
 		};
-		public float LootDropChange  = 100;
+
+		public float LootDropChange = 100;
+		
 	}
 }
