@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CodeBase.Enums;
 using Unity.Mathematics;
 using UnityEngine;
@@ -14,6 +15,12 @@ namespace CodeBase.Configs
 		public float Speed = 3;
 		public float3 GunDirection = new float3(0,0,-1);
 		public float3 MoveDirection = new float3(0,0,-1);
-		public float Loot = 15;
+		public float Score = 15;
+		public List<BulletType> BulletLoot = new List<BulletType>()
+		{
+			BulletType.Fire,
+			BulletType.Ice
+		};
+		public float LootDropChange  = 100;
 	}
 }

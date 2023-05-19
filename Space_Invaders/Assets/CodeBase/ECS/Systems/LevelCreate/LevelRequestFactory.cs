@@ -59,7 +59,20 @@ namespace CodeBase.ECS.Systems.LevelCreate
 			
 			var scoreLootPool = world.GetPool<ScoreLoot>();
 			ref var scoreLoot =ref  scoreLootPool.Add(entity);
-			scoreLoot.Value = config.Loot;
+			scoreLoot.Value = config.Score;
+
+			var random = new System.Random();
+			int randomChance = random.Next(0, 100);
+			
+			if (randomChance < config.LootDropChange)
+			{
+				var bulletLootPool = world.GetPool<BulletLoot>();
+				ref var bulletLoot = ref bulletLootPool.Add(entity);
+				var nextInt = random.Next(0, config.BulletLoot.Count);
+				bulletLoot.Type = config.BulletLoot[nextInt];
+			}
+
+			
 			
 			return entity;
 		}
@@ -89,6 +102,10 @@ namespace CodeBase.ECS.Systems.LevelCreate
 			var bodySize = world.GetPool<BodySize>();
 			ref var size = ref bodySize.Add(entity);
 			size.Radius = config.BodySize;
+			
+			var bulletOwnerPool = world.GetPool<BulletOwner>();
+			ref var bulletOwner = ref bulletOwnerPool.Add(entity);
+			bulletOwner.Type = config.BulletType;
 
 
 			return entity;
@@ -123,11 +140,32 @@ namespace CodeBase.ECS.Systems.LevelCreate
 			return entity;
 		}
 	}
+	public class LootFactory
+	{
+		public static int Create(EcsWorld world, LootData config)
+		{
+			var entity = world.NewEntity();
+
+			var lootPool = world.GetPool<Loot>();
+			ref var loot = ref lootPool.Add(entity);
+			
+
+			var positionPool = world.GetPool<SpawnEvent>();
+			ref var position = ref positionPool.Add(entity);
+			position.Position = config.Position;
+			position.Path = config.PrefabPath;
+
+			return entity;
+		}
+	}
 
 	public struct SpawnEvent
 	{
 		public float3 Position;
 		public string Path;
+	}
+	public struct Loot
+	{
 	}
 
 	public struct Alien
@@ -148,10 +186,18 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	{
 		public float Value;
 	}
+	public struct BulletOwner
+	{
+		public BulletType Type;
+	}
 
 	public struct Position
 	{
 		public float3 Value;
+	}
+	public struct BulletLoot
+	{
+		public BulletType Type;
 	}
 
 	public struct FlyTo
@@ -163,7 +209,7 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	{
 		public float3 Direction;
 	}
-
+	
 	public struct Damage
 	{
 		public float Value;

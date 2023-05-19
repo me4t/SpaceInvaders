@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Configs;
 using CodeBase.Enums;
-using CodeBase.Infrastructure;
 using UnityEngine;
 
 namespace CodeBase.Services.StaticData
@@ -13,11 +12,13 @@ namespace CodeBase.Services.StaticData
 		private Dictionary<string, LevelConfig> levels;
 		private Dictionary<PlayerType, PlayerConfig> players;
 		private Dictionary<BulletType, BulletConfig> bullets;
-		
+		private Dictionary<BulletType, BulletLootConfig> loots;
+
 		private const string AlienConfigsPath = "Static Data/Aliens";
 		private const string LevelsPath = "Static Data/Levels";
 		private const string PlayersPath = "Static Data/Player";
 		private const string BulletsPath = "Static Data/Bullets";
+		private const string LootBulletsPath = "Static Data/Loot/Bullets";
 
 		public void Load()
 		{
@@ -32,9 +33,13 @@ namespace CodeBase.Services.StaticData
 			players = Resources
 				.LoadAll<PlayerConfig>(PlayersPath)
 				.ToDictionary(x => x.Type, x => x);
-			
+
 			bullets = Resources
 				.LoadAll<BulletConfig>(BulletsPath)
+				.ToDictionary(x => x.Type, x => x);
+
+			loots = Resources
+				.LoadAll<BulletLootConfig>(LootBulletsPath)
 				.ToDictionary(x => x.Type, x => x);
 		}
 
@@ -55,6 +60,11 @@ namespace CodeBase.Services.StaticData
 
 		public BulletConfig ForBullet(BulletType id) =>
 			bullets.TryGetValue(id, out BulletConfig staticData)
+				? staticData
+				: null;
+
+		public BulletLootConfig ForBulletLoot(BulletType id) =>
+			loots.TryGetValue(id, out BulletLootConfig staticData)
 				? staticData
 				: null;
 	}

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CodeBase.Configs;
 using CodeBase.ECS.Systems.LevelCreate;
 using CodeBase.Enums;
@@ -7,6 +8,7 @@ using CodeBase.Services.StaticData;
 using Leopotam.EcsLite;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = System.Random;
 
 namespace CodeBase.ECS.Systems.Factories
 {
@@ -36,16 +38,15 @@ namespace CodeBase.ECS.Systems.Factories
 			{
 				ref var levelCreateRequest = ref requestPool.Get(entity);
 				var levelConfig = levelCreateRequest.Config;
-				
-				foreach (var alien in levelConfig.aliens) 
+
+				foreach (var alien in levelConfig.aliens)
 					CreateAlien(alien);
-				
+
 				CreatePlayer(levelConfig.PlayerSpawnPoint);
-				
+
 				requestPool.Del(entity);
 				Debug.Log("CreateLeveL System");
 			}
-
 		}
 
 		private void CreateAlien(AlienSpawnPoint spawnPoint)
@@ -60,10 +61,12 @@ namespace CodeBase.ECS.Systems.Factories
 			data.Speed = alienConfig.Speed;
 			data.GunDirection = alienConfig.GunDirection;
 			data.MoveDirection = alienConfig.MoveDirection;
-			data.Loot = alienConfig.Loot;
-
+			data.Score = alienConfig.Score;
+			data.BulletLoot = alienConfig.BulletLoot;
+			data.LootDropChange = alienConfig.LootDropChange;
 			AlienFactory.Create(world, data);
 		}
+
 		private void CreatePlayer(PlayerSpawnPoint spawnPoint)
 		{
 			var alienConfig = staticDataService.ForPlayer(spawnPoint.PlayerType);
@@ -74,10 +77,10 @@ namespace CodeBase.ECS.Systems.Factories
 			data.Speed = alienConfig.Speed;
 			data.GunDirection = alienConfig.GunDirection;
 			data.BodySize = alienConfig.Size;
+			data.BulletType = alienConfig.BulletType;
 			PlayerFactory.Create(world, data);
 		}
 	}
-
 
 	public class AlienCreateData
 	{
@@ -89,8 +92,11 @@ namespace CodeBase.ECS.Systems.Factories
 		public float Speed;
 		public float3 GunDirection;
 		public float3 MoveDirection;
-		public float Loot;
+		public float Score;
+		public List<BulletType> BulletLoot;
+		public float LootDropChange;
 	}
+
 	public class PlayerCreateData
 	{
 		public float3 Position;
@@ -99,7 +105,9 @@ namespace CodeBase.ECS.Systems.Factories
 		public float Speed;
 		public float3 GunDirection;
 		public float BodySize;
+		public BulletType BulletType;
 	}
+
 	public class BulletCreateData
 	{
 		public float3 Position;
@@ -108,5 +116,17 @@ namespace CodeBase.ECS.Systems.Factories
 		public float BodySize;
 		public float Damage;
 	}
-	
+
+	public class LootData
+	{
+		public float3 Position;
+		public string PrefabPath;
+		public LootId LootId;
+	}
+
+	public enum LootId
+	{
+		Bullet = 1,
+		Other = 2,
+	}
 }

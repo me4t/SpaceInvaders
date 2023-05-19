@@ -9,5 +9,7 @@ namespace CodeBase.Enums
 		[Description("Views/Bullets/IceBullet")] IceBullet = 40,
 		[Description("Views/Bullets/FireBullet")] FireBullet = 41,
 		[Description("Views/Bullets/MagicBullet")] MagicBullet = 42,
+		[Description("Views/Loot/IceLootBullet")] IceLootBullet = 50,
+		[Description("Views/Loot/FireLootBullet")] FireLootBullet = 51,
 	}
 }

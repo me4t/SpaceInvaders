@@ -40,6 +40,7 @@ namespace CodeBase.ECS.Systems.Factories
 						deathEventPool.Add(target);
 					}
 				}
+				damagePool.Del(entity);
 			}
 		}
 

@@ -47,6 +47,7 @@ namespace CodeBase.ZenjectInstallers
 			BindSystem<MoveAliensSystem>();
 
 			BindSystem<CreateLevelSystem>();
+			BindSystem<CreateLootViewSystem>();
 			BindSystem<CreateAlienViewSystem>();
 			BindSystem<CreatePlayerViewSystem>();
 			BindSystem<PlayerShootSystem>();
@@ -54,6 +55,7 @@ namespace CodeBase.ZenjectInstallers
 			BindSystem<FlySystem>();
 			BindSystem<CheckCollisionSystem>();
 			BindSystem<DamageSystem>();
+			BindSystem<LootSpawnSystem>();
 			BindSystem<DeathSystem>();
 			BindSystem<ScoreSystem>();
 			BindSystem<UpdateViewPositionSystem>();

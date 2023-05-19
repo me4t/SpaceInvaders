@@ -12,5 +12,6 @@ namespace CodeBase.Configs
 		public float Speed = 3;
 		public float3 GunDirection = new float3(0,0,1);
 		public float Size;
+		public BulletType BulletType = BulletType.Fire;
 	}
 }

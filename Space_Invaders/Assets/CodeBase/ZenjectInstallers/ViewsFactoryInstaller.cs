@@ -11,6 +11,7 @@ namespace CodeBase.ZenjectInstallers
 			AlienViewFactory();
 			PlayerViewFactory();
 			BulletViewFactory();
+			LootViewFactory();
 			
 			BindViewsFactory();
 		}
@@ -35,6 +36,12 @@ namespace CodeBase.ZenjectInstallers
 			Container
 				.BindFactory<string, BulletView, BulletView.Factory>()
 				.FromFactory<PrefabResourceFactory<BulletView>>();
+		}
+		private void LootViewFactory()
+		{
+			Container
+				.BindFactory<string, LootView, LootView.Factory>()
+				.FromFactory<PrefabResourceFactory<LootView>>();
 		}
 	}
 }

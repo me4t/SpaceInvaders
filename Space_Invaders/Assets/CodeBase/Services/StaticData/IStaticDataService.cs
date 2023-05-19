@@ -1,4 +1,5 @@
 using CodeBase.Configs;
+using CodeBase.ECS.Systems.Factories;
 using CodeBase.Enums;
 
 namespace CodeBase.Services.StaticData
@@ -10,5 +11,6 @@ namespace CodeBase.Services.StaticData
 		AlienConfig ForAlien(AlienType id);
 		PlayerConfig ForPlayer(PlayerType spawnPointPlayerType);
 		BulletConfig ForBullet(BulletType ice);
+		BulletLootConfig ForBulletLoot(BulletType scoreLootType);
 	}
 }
