@@ -76,6 +76,7 @@ namespace CodeBase.ECS.Systems.Factories
 			data.GunDirection = alienConfig.GunDirection;
 			data.BodySize = alienConfig.Size;
 			data.BulletType = alienConfig.BulletType;
+			data.BulletCount = alienConfig.BaseBulletCount;
 			PlayerFactory.Create(world, data);
 		}
 	}
@@ -104,6 +105,7 @@ namespace CodeBase.ECS.Systems.Factories
 		public float3 GunDirection;
 		public float BodySize;
 		public BulletType BulletType;
+		public int BulletCount;
 	}
 
 	public class BulletCreateData

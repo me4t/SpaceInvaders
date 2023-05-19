@@ -11,8 +11,6 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsFilter filter;
 		private EcsPool<SpawnEvent> spawnEventPool;
 		private EcsPool<Bullet> bulletPool;
-		private float delay;
-		private EcsPool<NextRoundEvent> updateScorePool;
 		private int current;
 
 
@@ -25,14 +23,12 @@ namespace CodeBase.ECS.Systems.Factories
 		{
 			world = systems.GetWorld();
 			filter = world.Filter<NextRoundEvent>().End();
-			updateScorePool = world.GetPool<NextRoundEvent>();
 		}
 
 		public void Run(IEcsSystems systems)
 		{
 			foreach (var entity in filter)
 			{
-				ref var updateScore = ref updateScorePool.Get(entity);
 				current++;
 				world.DelEntity(entity);
 			}

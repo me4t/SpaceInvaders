@@ -14,6 +14,7 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsPool<Damage> damagePool;
 		private EcsPool<Health> healthPool;
 		private EcsPool<DeathEvent> deathEventPool;
+		private EcsPool<Dead> deadPool;
 
 
 		public void Init(IEcsSystems systems)
@@ -23,6 +24,7 @@ namespace CodeBase.ECS.Systems.Factories
 			damagePool = world.GetPool<Damage>();
 			healthPool = world.GetPool<Health>();
 			deathEventPool = world.GetPool<DeathEvent>();
+			deadPool = world.GetPool<Dead>();
 		}
 
 		public void Run(IEcsSystems systems)
@@ -40,13 +42,17 @@ namespace CodeBase.ECS.Systems.Factories
 						deathEventPool.Add(target);
 					}
 				}
+
 				damagePool.Del(entity);
 			}
 		}
 
 		private bool TargetIsAlive(ref Damage damage, out int target)
 		{
-			return damage.Target.Unpack(world, out target);
+			if (damage.Target.Unpack(world, out target))
+				return !deathEventPool.Has(target) && !deadPool.Has(target);
+
+			return false;
 		}
 	}
 }

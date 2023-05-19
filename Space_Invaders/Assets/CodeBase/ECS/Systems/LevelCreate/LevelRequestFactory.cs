@@ -68,6 +68,10 @@ namespace CodeBase.ECS.Systems.LevelCreate
 			var scoreLootPool = world.GetPool<ScoreLoot>();
 			ref var scoreLoot =ref  scoreLootPool.Add(entity);
 			scoreLoot.Value = config.Score;
+			
+			var moveTimePool = world.GetPool<MoveTime>();
+			ref var moveTime =ref  moveTimePool.Add(entity);
+			moveTime.WalkDelay = 0.5f;
 
 			var random = new System.Random();
 			int randomChance = random.Next(0, 100);
@@ -118,8 +122,11 @@ namespace CodeBase.ECS.Systems.LevelCreate
 			var bulletOwnerPool = world.GetPool<BulletOwner>();
 			ref var bulletOwner = ref bulletOwnerPool.Add(entity);
 			bulletOwner.Type = config.BulletType;
+			bulletOwner.BulletCount = config.BulletCount;
 
-
+			var update = world.GetPool<UpdateBulletCountEvent>();
+			update.Add(entity);
+			
 			return entity;
 		}
 	}
@@ -213,6 +220,7 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	public struct Bullet
 	{
 	}
+	
 
 	public struct Speed
 	{
@@ -221,6 +229,7 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	public struct BulletOwner
 	{
 		public BulletType Type;
+		public int BulletCount;
 	}
 
 	public struct Position
@@ -250,11 +259,19 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	public struct MoveEvent
 	{
 	}
+	public struct MoveTime
+	{
+		public float WanderTime;
+		public float WalkDelay;
+	}
 	public struct UpdateScore
 	{
 		public float Value;
 	}
 	public struct DeathEvent
+	{
+	}
+	public struct UpdateBulletCountEvent
 	{
 	}
 	public struct MoveDirection

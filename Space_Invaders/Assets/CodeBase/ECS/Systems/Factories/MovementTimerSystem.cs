@@ -11,11 +11,8 @@ namespace CodeBase.ECS.Systems.Factories
 		private readonly IStaticDataService staticDataService;
 		private EcsWorld world;
 		private EcsFilter filter;
-		private EcsPool<SpawnEvent> spawnEventPool;
-		private EcsPool<Bullet> bulletPool;
-		private float delay;
-		private float walkDelay = 0.5f;
 		private EcsPool<MoveEvent> moveEventPool;
+		private EcsPool<MoveTime> moveTimePool;
 
 
 		public MovementTimerSystem(ITimeService timeService)
@@ -28,17 +25,20 @@ namespace CodeBase.ECS.Systems.Factories
 			world = systems.GetWorld();
 			filter = world.Filter<Alien>().Inc<View>().End();
 			moveEventPool = world.GetPool<MoveEvent>();
+			moveTimePool = world.GetPool<MoveTime>();
 		}
 
 		public void Run(IEcsSystems systems)
 		{
-			delay += timeService.DeltaTime;
-			if (delay > walkDelay)
+			foreach (var entity in filter)
 			{
-				delay = 0;
-				foreach (var entity in filter)
+				ref var moveTime = ref moveTimePool.Get(entity);
+				moveTime.WanderTime += timeService.DeltaTime;
+
+				if (moveTime.WanderTime > moveTime.WalkDelay)
 				{
 					moveEventPool.Add(entity);
+					moveTime.WanderTime = 0;
 				}
 			}
 		}

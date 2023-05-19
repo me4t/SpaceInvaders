@@ -17,6 +17,7 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsPool<FlyTo> flyToPool;
 		private EcsPool<Gun> gunPool;
 		private EcsPool<BulletOwner> bulletOwnerPool;
+		private EcsPool<UpdateBulletCountEvent> shootEventPool;
 
 		public PlayerShootSystem(IStaticDataService staticDataService,IInputService inputService)
 		{
@@ -33,15 +34,17 @@ namespace CodeBase.ECS.Systems.Factories
 			flyToPool = world.GetPool<FlyTo>();
 			gunPool = world.GetPool<Gun>();
 			bulletOwnerPool = world.GetPool<BulletOwner>();
+			shootEventPool = world.GetPool<UpdateBulletCountEvent>();
 		}
 
 		public void Run(IEcsSystems systems)
 		{
 			foreach (var entity in filter)
 			{
-				if (inputService.IsFire)
+				ref var bulletOwner = ref bulletOwnerPool.Get(entity);
+
+				if (CanFire(bulletOwner))
 				{
-					ref var bulletOwner = ref bulletOwnerPool.Get(entity);
 					var bulletConfig = staticDataService.ForBullet(bulletOwner.Type);
 					var bulletData = new BulletCreateData();
 					bulletData.Speed = bulletConfig.Speed;
@@ -55,10 +58,16 @@ namespace CodeBase.ECS.Systems.Factories
 					ref var flyTo = ref flyToPool.Add(bulletEntity);
 					ref var playerGun = ref gunPool.Get(entity);
 
-
 					flyTo.Value = playerGun.Direction;
+					bulletOwner.BulletCount--;
+					shootEventPool.Add(entity);
 				}
 			}
+		}
+
+		private bool CanFire(BulletOwner bulletOwner)
+		{
+			return inputService.IsFire && bulletOwner.BulletCount > 0;
 		}
 	}
 }

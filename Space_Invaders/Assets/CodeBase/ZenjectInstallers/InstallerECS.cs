@@ -60,7 +60,9 @@ namespace CodeBase.ZenjectInstallers
 			BindSystem<ScoreSystem>();
 			BindSystem<SetNextRoundSystem>();
 			BindSystem<UpdateRoundSystem>();
+			BindSystem<UpdateBulletCountSystem>();
 			BindSystem<DestroyViewAliensSystem>();
+			BindSystem<DestroyMissingBulletsSystem>();
 			BindSystem<UpdateViewPositionSystem>();
 			BindSystem<CleanUpSystem>();
 		}

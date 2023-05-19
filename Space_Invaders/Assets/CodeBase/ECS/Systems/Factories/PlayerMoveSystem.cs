@@ -71,5 +71,14 @@ namespace CodeBase.ECS.Systems.Factories
 		{
 			return a.x * a.x + a.y * a.y + a.z * a.z;
 		}
+
+		public static float Square(float value)
+		{
+			return value * value;
+		}
+		public static float Distance(float3 from,float3 to)
+		{
+			return math.sqrt(Square(from.x - to.x)) + Square(from.y - to.y) + Square(from.z - to.z);
+		}
 	}
 }
