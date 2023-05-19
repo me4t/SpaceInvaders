@@ -23,7 +23,7 @@ namespace CodeBase.ECS.Systems.Factories
 		{
 			world = systems.GetWorld();
 			filter = world.Filter<Bullet>().Inc<View>().Inc<FlyTo>().End();
-			alienFilter = world.Filter<Alien>().Inc<View>().End();
+			alienFilter = world.Filter<Alien>().Inc<View>().Exc<Dead>().End();
 
 			positionPool = world.GetPool<Position>();
 			damagePool = world.GetPool<Damage>();

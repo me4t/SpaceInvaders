@@ -14,7 +14,7 @@ namespace CodeBase.Infrastructure.CoreEngine
 		private EcsSystems systems;
 		private IEnumerable<IEcsSystem> bindedSystems;
 		private IEnumerable<IFixedEcsSystem> _fixedEcsSystems;
-		private EcsFilter resultFilter;
+		private EcsFilter gameOverFilter;
 
 		public CoreEngine(IEnumerable<IEcsSystem> bindedSystems, IEnumerable<IFixedEcsSystem> fixedEcsSystems)
 		{
@@ -26,7 +26,8 @@ namespace CodeBase.Infrastructure.CoreEngine
 		{
 			Debug.Log("Init Session");
 			Initialize();
-			CreateLevelFromConfig(levelConfig);
+			CreateLevelFromTempleta(levelConfig);
+			CreateGameOverFilter();
 		}
 
 		public void Tick()
@@ -38,6 +39,11 @@ namespace CodeBase.Infrastructure.CoreEngine
 		{
 			fixedsystems?.Run();
 		}
+
+		private void CreateGameOverFilter() => 
+			gameOverFilter = world.Filter<NextRoundEvent>().End();
+		public bool GameOver => 
+			gameOverFilter.GetEntitiesCount() > 0;
 
 		private void Initialize()
 		{
@@ -67,7 +73,7 @@ namespace CodeBase.Infrastructure.CoreEngine
 		{
 		}
 
-		public bool IsSessionEnd => resultFilter.GetEntitiesCount() > 0;
+		public bool IsSessionEnd => gameOverFilter.GetEntitiesCount() > 0;
 
 
 		public void Cleanup()
@@ -82,11 +88,11 @@ namespace CodeBase.Infrastructure.CoreEngine
 			{
 				world.Destroy();
 				world = null;
-				resultFilter = null;
+				gameOverFilter = null;
 			}
 		}
 
-		void CreateLevelFromConfig(LevelConfig config) => 
-			LevelRequestFactory.Create(world, config);
+		void CreateLevelFromTempleta(LevelConfig config) =>
+			LevelRequestFactory.Create(world, config,true);
 	}
 }

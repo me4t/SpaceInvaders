@@ -13,6 +13,9 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsPool<Bullet> bulletPool;
 		private EcsPool<ScoreLoot> scoreLootPool;
 		private EcsPool<UpdateScore> updateScorePool;
+		private EcsPool<Dead> deadPool;
+		private EcsPool<DeathEvent> deathEventPool;
+		private EcsPool<View> viewPool;
 
 
 		public void Init(IEcsSystems systems)
@@ -21,6 +24,9 @@ namespace CodeBase.ECS.Systems.Factories
 			filter = world.Filter<DeathEvent>().End();
 			scoreLootPool = world.GetPool<ScoreLoot>();
 			updateScorePool = world.GetPool<UpdateScore>();
+			deathEventPool = world.GetPool<DeathEvent>();
+			viewPool = world.GetPool<View>();
+			deadPool = world.GetPool<Dead>();
 		}
 
 		public void Run(IEcsSystems systems)
@@ -34,7 +40,9 @@ namespace CodeBase.ECS.Systems.Factories
 					ref var updateScore = ref updateScorePool.Add(newEntity);
 					updateScore.Value = scoreLoot.Value;
 				}
-				world.DelEntity(entity);
+				viewPool.Del(entity);
+				deathEventPool.Del(entity);
+				deadPool.Add(entity);
 			}
 		}
 	}

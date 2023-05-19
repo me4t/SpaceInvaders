@@ -7,6 +7,6 @@ namespace CodeBase.Infrastructure.CoreEngine
 		void InitSession(LevelConfig levelConfig);
 		void Cleanup();
 		void Tick();
-		void FixedTick();
+		bool GameOver { get; }
 	}
 }

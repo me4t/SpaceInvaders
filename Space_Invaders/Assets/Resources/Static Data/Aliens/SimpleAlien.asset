@@ -16,7 +16,7 @@ MonoBehaviour:
   Path: 1
   Size: 3
   Health: 5
-  Speed: 110
+  Speed: 200
   GunDirection:
     x: 0
     y: 0
@@ -25,3 +25,6 @@ MonoBehaviour:
     x: 0
     y: 0
     z: -1
+  Score: 15
+  BulletLoot: 0100000002000000
+  LootDropChange: 60

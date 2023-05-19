@@ -23,7 +23,7 @@ namespace CodeBase.ECS.Systems.Factories
 		public void Init(IEcsSystems systems)
 		{
 			world = systems.GetWorld();
-			filter = world.Filter<Alien>().Exc<View>().End();
+			filter = world.Filter<Alien>().Exc<View>().Exc<Dead>().End();
 
 			viewPool = world.GetPool<View>();
 			alienPool = world.GetPool<Alien>();

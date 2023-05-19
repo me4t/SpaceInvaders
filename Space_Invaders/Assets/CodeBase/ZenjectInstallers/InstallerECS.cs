@@ -1,6 +1,5 @@
 using CodeBase.ECS.Systems.Factories;
 using CodeBase.Infrastructure.CoreEngine;
-using CodeBase.Infrastructure.GameStateMachine.States;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.UnityEditor;
 using Zenject;
@@ -46,7 +45,7 @@ namespace CodeBase.ZenjectInstallers
 			BindSystem<MovementTimerSystem>();
 			BindSystem<MoveAliensSystem>();
 
-			BindSystem<CreateLevelSystem>();
+			BindSystem<CreateRoundSystem>();
 			BindSystem<CreateLootViewSystem>();
 			BindSystem<CreateAlienViewSystem>();
 			BindSystem<CreatePlayerViewSystem>();
@@ -57,7 +56,9 @@ namespace CodeBase.ZenjectInstallers
 			BindSystem<DamageSystem>();
 			BindSystem<LootSpawnSystem>();
 			BindSystem<DeathSystem>();
+			BindSystem<CheckAlienDeath>();
 			BindSystem<ScoreSystem>();
+			BindSystem<UpdateRoundSystem>();
 			BindSystem<UpdateViewPositionSystem>();
 		}
 

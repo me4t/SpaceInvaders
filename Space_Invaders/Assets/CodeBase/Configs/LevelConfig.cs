@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using CodeBase.Enums;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace CodeBase.Configs
 {
 	[CreateAssetMenu(fileName = "LevelConfig", menuName = "Static Data/Level")]
 	public class LevelConfig : ScriptableObject
 	{
-		 public string Key;
+		 public int Key;
 		 public PlayerSpawnPoint PlayerSpawnPoint;
 		 public List<AlienSpawnPoint> aliens;
 	}

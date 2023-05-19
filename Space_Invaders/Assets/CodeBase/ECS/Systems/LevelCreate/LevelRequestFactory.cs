@@ -8,14 +8,18 @@ namespace CodeBase.ECS.Systems.LevelCreate
 {
 	public class LevelRequestFactory
 	{
-		public static int Create(EcsWorld world, LevelConfig config)
+		public static int Create(EcsWorld world, LevelConfig config,bool withPlayer = false)
 		{
 			var entity = world.NewEntity();
 
-			var reqeustsPool = world.GetPool<LevelCreateRequest>();
+			var reqeustsPool = world.GetPool<RoundCreateRequest>();
 
 			ref var requestComponent = ref reqeustsPool.Add(entity);
-			requestComponent.Config = config;
+			requestComponent.Config  = new LevelData();
+			requestComponent.Config.PlayerSpawnPoint = config.PlayerSpawnPoint;
+			requestComponent.Config.aliens = config.aliens;
+			requestComponent.Config.Key = config.Key;
+			requestComponent.withPlayer = withPlayer;
 
 			return entity;
 		}
@@ -172,6 +176,14 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	{
 		public AlienType AlienType;
 	}
+	public struct Dead
+	{
+	}
+	public struct NextRoundEvent
+	{
+		
+	}
+	
 
 	public struct Player
 	{

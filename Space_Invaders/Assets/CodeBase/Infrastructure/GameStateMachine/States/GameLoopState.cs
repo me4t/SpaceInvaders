@@ -32,7 +32,16 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 		{
 		}
 
-		public void Tick() => coreEngine.Tick();
+		public void Tick()
+		{
+			if (coreEngine.GameOver)
+			{
+					Debug.Log("game over");
+				return;
+			}
+
+			coreEngine.Tick();
+		}
 
 
 		public class Factory : PlaceholderFactory<IGameStateMachine, GameLoopState>

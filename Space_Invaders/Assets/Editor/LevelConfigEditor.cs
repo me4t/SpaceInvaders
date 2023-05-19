@@ -4,7 +4,6 @@ using CodeBase.ECS.Systems.LevelCreate;
 using CodeBase.Enums;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Editor
 {
@@ -19,9 +18,6 @@ namespace Editor
 
 			if (GUILayout.Button("Collect"))
 			{
-			
-
-				levelData.Key = SceneManager.GetActiveScene().name;
 
 				var alienSpawn = FindObjectOfType<AlienSpawn>();
 				List<AlienSpawnPoint> alienSpawnPoints = new List<AlienSpawnPoint>();

@@ -9,7 +9,7 @@ namespace CodeBase.Services.StaticData
 	public class StaticDataService : IStaticDataService
 	{
 		private Dictionary<AlienType, AlienConfig> aliens;
-		private Dictionary<string, LevelConfig> levels;
+		private Dictionary<int, LevelConfig> levels;
 		private Dictionary<PlayerType, PlayerConfig> players;
 		private Dictionary<BulletType, BulletConfig> bullets;
 		private Dictionary<BulletType, BulletLootConfig> loots;
@@ -43,10 +43,12 @@ namespace CodeBase.Services.StaticData
 				.ToDictionary(x => x.Type, x => x);
 		}
 
-		public LevelConfig ForLevel(string sceneName) =>
-			levels.TryGetValue(sceneName, out LevelConfig staticData)
+		public LevelConfig ForLevelTemplate(int key) =>
+			levels.TryGetValue(key, out LevelConfig staticData)
 				? staticData
 				: null;
+
+		public int TemplateCount => levels.Keys.Count;
 
 		public AlienConfig ForAlien(AlienType id) =>
 			aliens.TryGetValue(id, out AlienConfig staticData)

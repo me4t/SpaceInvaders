@@ -1,5 +1,4 @@
 using CodeBase.Configs;
-using CodeBase.ECS.Systems.Factories;
 using CodeBase.Enums;
 
 namespace CodeBase.Services.StaticData
@@ -7,7 +6,8 @@ namespace CodeBase.Services.StaticData
 	public interface IStaticDataService
 	{
 		void Load();
-		LevelConfig ForLevel(string sceneName);
+		LevelConfig ForLevelTemplate(int key);
+		int TemplateCount { get; }
 		AlienConfig ForAlien(AlienType id);
 		PlayerConfig ForPlayer(PlayerType spawnPointPlayerType);
 		BulletConfig ForBullet(BulletType ice);

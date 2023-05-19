@@ -37,7 +37,7 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 		private void OnLoaded(string sceneName)
 		{
 			Debug.Log("Scene Loaded");
-			LevelConfig levelConfig = staticDataService.ForLevel(sceneName);
+			LevelConfig levelConfig = staticDataService.ForLevelTemplate(1);
             
 			InitSession(levelConfig);
 			PreWarmCore(); 

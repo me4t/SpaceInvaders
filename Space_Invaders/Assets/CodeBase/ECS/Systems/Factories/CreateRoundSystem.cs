@@ -1,25 +1,23 @@
-using System;
 using System.Collections.Generic;
 using CodeBase.Configs;
 using CodeBase.ECS.Systems.LevelCreate;
 using CodeBase.Enums;
-using CodeBase.Infrastructure;
 using CodeBase.Services.StaticData;
 using Leopotam.EcsLite;
 using Unity.Mathematics;
 using UnityEngine;
-using Random = System.Random;
 
 namespace CodeBase.ECS.Systems.Factories
 {
-	public class CreateLevelSystem : IEcsInitSystem, IEcsRunSystem
+	public class CreateRoundSystem : IEcsInitSystem, IEcsRunSystem
 	{
 		private readonly IStaticDataService staticDataService;
 		private EcsWorld world;
 		private EcsFilter requestsFilter;
-		private EcsPool<LevelCreateRequest> requestPool;
+		private EcsPool<RoundCreateRequest> requestPool;
+		private EcsPool<Used> usedPool;
 
-		public CreateLevelSystem(IStaticDataService staticDataService)
+		public CreateRoundSystem(IStaticDataService staticDataService)
 		{
 			this.staticDataService = staticDataService;
 		}
@@ -27,9 +25,10 @@ namespace CodeBase.ECS.Systems.Factories
 		public void Init(IEcsSystems systems)
 		{
 			world = systems.GetWorld();
-			requestsFilter = world.Filter<LevelCreateRequest>().End();
+			requestsFilter = world.Filter<RoundCreateRequest>().Exc<Used>().End();
 
-			requestPool = world.GetPool<LevelCreateRequest>();
+			requestPool = world.GetPool<RoundCreateRequest>();
+			usedPool = world.GetPool<Used>();
 		}
 
 		public void Run(IEcsSystems systems)
@@ -42,9 +41,8 @@ namespace CodeBase.ECS.Systems.Factories
 				foreach (var alien in levelConfig.aliens)
 					CreateAlien(alien);
 
-				CreatePlayer(levelConfig.PlayerSpawnPoint);
-
-				requestPool.Del(entity);
+				if (levelCreateRequest.withPlayer) CreatePlayer(levelConfig.PlayerSpawnPoint);
+				usedPool.Add(entity);
 				Debug.Log("CreateLeveL System");
 			}
 		}
