@@ -60,6 +60,7 @@ namespace CodeBase.ECS.Systems.Factories
 			data.Speed = alienConfig.Speed;
 			data.GunDirection = alienConfig.GunDirection;
 			data.MoveDirection = alienConfig.MoveDirection;
+			data.Loot = alienConfig.Loot;
 
 			AlienFactory.Create(world, data);
 		}
@@ -88,6 +89,7 @@ namespace CodeBase.ECS.Systems.Factories
 		public float Speed;
 		public float3 GunDirection;
 		public float3 MoveDirection;
+		public float Loot;
 	}
 	public class PlayerCreateData
 	{

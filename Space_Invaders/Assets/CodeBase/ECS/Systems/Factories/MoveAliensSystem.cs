@@ -2,7 +2,6 @@ using CodeBase.ECS.Systems.LevelCreate;
 using CodeBase.Services.SceneLoader;
 using CodeBase.Services.StaticData;
 using Leopotam.EcsLite;
-using Unity.Mathematics;
 
 namespace CodeBase.ECS.Systems.Factories
 {

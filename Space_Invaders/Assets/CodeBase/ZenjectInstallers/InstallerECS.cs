@@ -54,13 +54,12 @@ namespace CodeBase.ZenjectInstallers
 			BindSystem<FlySystem>();
 			BindSystem<CheckCollisionSystem>();
 			BindSystem<DamageSystem>();
+			BindSystem<DeathSystem>();
+			BindSystem<ScoreSystem>();
 			BindSystem<UpdateViewPositionSystem>();
 		}
 
 		void BindSystem<TSystem>() where TSystem : IEcsSystem => 
 			Container.Bind<IEcsSystem>().To<TSystem>().AsTransient();
-
-		void BindFixedSystem<TSystem>() where TSystem : IFixedEcsSystem => 
-			Container.Bind<IFixedEcsSystem>().To<TSystem>().AsTransient();
 	}
 }

@@ -57,6 +57,10 @@ namespace CodeBase.ECS.Systems.LevelCreate
 			ref var move =ref  moveDirPool.Add(entity);
 			move.Direction = config.MoveDirection;
 			
+			var scoreLootPool = world.GetPool<ScoreLoot>();
+			ref var scoreLoot =ref  scoreLootPool.Add(entity);
+			scoreLoot.Value = config.Loot;
+			
 			return entity;
 		}
 	}
@@ -168,6 +172,13 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	public struct MoveEvent
 	{
 	}
+	public struct UpdateScore
+	{
+		public float Value;
+	}
+	public struct DeathEvent
+	{
+	}
 	public struct MoveDirection
 	{
 		public float3 Direction;
@@ -181,6 +192,10 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	public struct BodySize
 	{
 		public float Radius;
+	}
+	public struct ScoreLoot
+	{
+		public float Value;
 	}
 
 	public struct Health

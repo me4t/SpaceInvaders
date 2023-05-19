@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 
 namespace CodeBase.Services.SceneLoader
 {
-	public class SceneLoader  
+	public class SceneLoader
 	{
 		private readonly CoroutineRunner.CoroutineRunner coroutineRunner;
 
-		public SceneLoader(CoroutineRunner.CoroutineRunner coroutineRunner) => 
+		public SceneLoader(CoroutineRunner.CoroutineRunner coroutineRunner) =>
 			this.coroutineRunner = coroutineRunner;
 
 		public void Load(string name, Action onLoaded = null) =>
 			coroutineRunner.StartCoroutine(LoadScene(name, onLoaded));
-    
+
 		private IEnumerator LoadScene(string nextScene, Action onLoaded = null)
 		{
 			AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
@@ -25,7 +25,7 @@ namespace CodeBase.Services.SceneLoader
 
 			Scene scene = SceneManager.GetSceneByName(nextScene);
 			SceneManager.SetActiveScene(scene);
-            
+
 			onLoaded?.Invoke();
 		}
 	}
@@ -37,7 +37,7 @@ namespace CodeBase.Services.SceneLoader
 		public Vector2 Axis => new Vector2(Horizontal, Vertical);
 	}
 
-	public class TimeService:ITimeService
+	public class TimeService : ITimeService
 	{
 		public float DeltaTime => Time.deltaTime;
 

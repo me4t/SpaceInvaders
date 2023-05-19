@@ -16,6 +16,7 @@ namespace CodeBase.CompositionRoot
 			BindTimeService();
 			BindInputService();
 			BindCoroutineRunner();
+			BindHudService();
 			BindSceneLoader();
 			BindLoadingCurtain();
 			BindStaticData();
@@ -35,6 +36,12 @@ namespace CodeBase.CompositionRoot
 		private void BindInputService() => Container.BindInterfacesTo<StandaloneInputService>().AsSingle();
 
 		private void BindCoroutineRunner() =>
+			Container
+				.BindInterfacesTo<HudService>()
+				.FromComponentInNewPrefabResource(Path.Hud)
+				.AsSingle();
+		
+		private void BindHudService() =>
 			Container
 				.Bind<CoroutineRunner>()
 				.FromComponentInNewPrefabResource(Path.CoroutineRunner)

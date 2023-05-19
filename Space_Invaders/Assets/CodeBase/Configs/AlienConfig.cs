@@ -14,5 +14,6 @@ namespace CodeBase.Configs
 		public float Speed = 3;
 		public float3 GunDirection = new float3(0,0,-1);
 		public float3 MoveDirection = new float3(0,0,-1);
+		public float Loot = 15;
 	}
 }

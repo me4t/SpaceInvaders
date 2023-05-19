@@ -13,6 +13,7 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsPool<Bullet> bulletPool;
 		private EcsPool<Damage> damagePool;
 		private EcsPool<Health> healthPool;
+		private EcsPool<DeathEvent> deathEventPool;
 
 
 		public void Init(IEcsSystems systems)
@@ -21,6 +22,7 @@ namespace CodeBase.ECS.Systems.Factories
 			filter = world.Filter<Damage>().End();
 			damagePool = world.GetPool<Damage>();
 			healthPool = world.GetPool<Health>();
+			deathEventPool = world.GetPool<DeathEvent>();
 		}
 
 		public void Run(IEcsSystems systems)
@@ -35,7 +37,7 @@ namespace CodeBase.ECS.Systems.Factories
 
 					if (health.Current <= 0)
 					{
-						world.DelEntity(target);
+						deathEventPool.Add(target);
 					}
 				}
 			}
