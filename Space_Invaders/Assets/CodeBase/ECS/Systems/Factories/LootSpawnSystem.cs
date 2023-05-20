@@ -37,14 +37,8 @@ namespace CodeBase.ECS.Systems.Factories
 				{
 					ref var loot = ref bulletLootPool.Get(entity);
 					ref var position = ref positionPool.Get(entity);
-					var config = staticDataService.ForBulletLoot(loot.Type);
-
-					var lootData = new BulletLootData();
-					lootData.PrefabPath = config.Path.ConvertToString();
+					var lootData = staticDataService.ForBulletLoot(loot.Type).DeepCopy();
 					lootData.Position = position.Value;
-					lootData.BodySize = config.BodySize;
-					lootData.BulletType = loot.Type;
-					lootData.Count = config.Count;
 					LootFactory.Create(world, lootData);
 				}
 			}

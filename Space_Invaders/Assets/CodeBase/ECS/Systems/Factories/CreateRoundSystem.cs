@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CodeBase.Configs;
 using CodeBase.ECS.Systems.LevelCreate;
@@ -44,7 +45,7 @@ namespace CodeBase.ECS.Systems.Factories
 				foreach (var alien in levelConfig.aliens)
 					CreateAlien(alien);
 
-				if (levelCreateRequest.withPlayer) CreatePlayer(levelConfig.PlayerSpawnPoint);
+				if (levelCreateRequest.WithPlayer) CreatePlayer(levelConfig.PlayerSpawnPoint);
 				usedPool.Add(entity);
 				nextRoundEvent.Add(world.NewEntity());
 				updateBulletPool.Add(world.NewEntity());
@@ -53,39 +54,20 @@ namespace CodeBase.ECS.Systems.Factories
 
 		private void CreateAlien(AlienSpawnPoint spawnPoint)
 		{
-			var alienConfig = staticDataService.ForAlien(spawnPoint.AlienType);
-			AlienCreateData data = new AlienCreateData();
+			var data = staticDataService.ForAlien(spawnPoint.AlienType);
 			data.Position = spawnPoint.Position;
-			data.AlienType = spawnPoint.AlienType;
-			data.PrefabPath = alienConfig.Path.ConvertToString();
-			data.BodySize = alienConfig.Size;
-			data.Health = alienConfig.Health;
-			data.Speed = alienConfig.Speed;
-			data.GunDirection = alienConfig.GunDirection;
-			data.MoveDirection = alienConfig.MoveDirection;
-			data.Score = alienConfig.Score;
-			data.BulletLoot = alienConfig.BulletLoot;
-			data.LootDropChange = alienConfig.LootDropChange;
 			AlienFactory.Create(world, data);
 		}
 
 		private void CreatePlayer(PlayerSpawnPoint spawnPoint)
 		{
-			var alienConfig = staticDataService.ForPlayer(spawnPoint.PlayerType);
-			PlayerCreateData data = new PlayerCreateData();
+			var data = staticDataService.ForPlayer(spawnPoint.PlayerType);
 			data.Position = spawnPoint.PlayerInitialPoint;
-			data.Type = spawnPoint.PlayerType;
-			data.PrefabPath = alienConfig.Path.ConvertToString();
-			data.Speed = alienConfig.Speed;
-			data.GunDirection = alienConfig.GunDirection;
-			data.BodySize = alienConfig.Size;
-			data.BulletType = alienConfig.BulletType;
-			data.BulletCount = alienConfig.BaseBulletCount;
-			data.Health = alienConfig.Health; 
 			PlayerFactory.Create(world, data);
 		}
 	}
 
+	[Serializable]
 	public class AlienCreateData
 	{
 		public float3 Position;
@@ -100,8 +82,8 @@ namespace CodeBase.ECS.Systems.Factories
 		public List<BulletType> BulletLoot;
 		public float LootDropChange;
 	}
-
-	public class PlayerCreateData
+	[Serializable]
+	public class PlayerData
 	{
 		public float3 Position;
 		public PlayerType Type;
@@ -114,6 +96,7 @@ namespace CodeBase.ECS.Systems.Factories
 		public float Health;
 	}
 
+	[Serializable]
 	public class BulletCreateData
 	{
 		public float3 Position;
@@ -123,12 +106,14 @@ namespace CodeBase.ECS.Systems.Factories
 		public float Damage;
 	}
 
+	[Serializable]
 	public class LootData
 	{
 		public float3 Position;
 		public string PrefabPath;
 		public float BodySize;
 	}
+	[Serializable]
 	public class BulletLootData:LootData
 	{
 		public BulletType BulletType;

@@ -30,7 +30,7 @@ namespace Editor
 					alienSpawnPoints.Add(point);
 				}
 
-				levelData.aliens = alienSpawnPoints;
+				levelData.Aliens = alienSpawnPoints;
 			}
 			if (GUILayout.Button("Bake InitialPoint"))
 			{

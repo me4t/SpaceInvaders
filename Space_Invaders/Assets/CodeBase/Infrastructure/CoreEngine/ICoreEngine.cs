@@ -1,10 +1,10 @@
-using CodeBase.Configs;
+using CodeBase.ECS.Systems.LevelCreate;
 
 namespace CodeBase.Infrastructure.CoreEngine
 {
 	public interface ICoreEngine
 	{
-		void InitSession(LevelConfig levelConfig);
+		void InitSession(LevelData levelConfig);
 		void Cleanup();
 		void Tick();
 		bool GameOver { get; }

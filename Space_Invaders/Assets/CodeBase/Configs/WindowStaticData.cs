@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using CodeBase.Enums;
-using CodeBase.Services.SceneLoader;
 using UnityEngine;
 
 namespace CodeBase.Configs
@@ -9,10 +8,10 @@ namespace CodeBase.Configs
 	[CreateAssetMenu(menuName = "Static Data/Window static data", fileName = "WindowStaticData")]
 	public class WindowStaticData : ScriptableObject
 	{
-		public List<WindowConfig> Configs;
+		public List<WindowData> Configs;
 	}
 	[Serializable]
-	public class WindowConfig
+	public class WindowData
 	{
 		public WindowId WindowId;
 		public ResourcePath Path;

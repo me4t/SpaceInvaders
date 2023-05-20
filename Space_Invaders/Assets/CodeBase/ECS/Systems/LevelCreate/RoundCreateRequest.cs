@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CodeBase.Configs;
 
@@ -6,9 +7,10 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	public struct RoundCreateRequest
 	{
 		public LevelData Config;
-		public bool withPlayer;
+		public bool WithPlayer;
 	}
 
+	[Serializable]
 	public class LevelData
 	{
 		public int Key;

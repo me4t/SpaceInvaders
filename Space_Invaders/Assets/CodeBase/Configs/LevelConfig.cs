@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CodeBase.Enums;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace CodeBase.Configs
 {
@@ -11,7 +12,7 @@ namespace CodeBase.Configs
 	{
 		 public int Key;
 		 public PlayerSpawnPoint PlayerSpawnPoint;
-		 public List<AlienSpawnPoint> aliens;
+		 [FormerlySerializedAs("aliens")] public List<AlienSpawnPoint> Aliens;
 	}
 
 	[Serializable]

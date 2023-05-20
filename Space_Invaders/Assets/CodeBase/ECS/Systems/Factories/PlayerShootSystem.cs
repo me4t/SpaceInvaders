@@ -56,15 +56,7 @@ namespace CodeBase.ECS.Systems.Factories
 		{
 			if (NoAmmo(bullet, bullets)) return;
 
-			var bulletConfig = staticDataService.ForBullet(bullet);
-			var bulletData = new BulletCreateData
-			{
-				Speed = bulletConfig.Speed,
-				PrefabPath = bulletConfig.Path.ConvertToString(),
-				BodySize = bulletConfig.Size,
-				Damage = bulletConfig.Damage
-			};
-
+			var bulletData = staticDataService.ForBullet(bullet).DeepCopy();
 			ref var position = ref positionPool.Get(entity);
 			bulletData.Position = position.Value;
 			var bulletEntity = BulletFactory.Create(world, bulletData);

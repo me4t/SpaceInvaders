@@ -18,7 +18,7 @@ namespace CodeBase.Infrastructure.CoreEngine
 			this.bindedSystems = bindedSystems;
 		}
 
-		public void InitSession(LevelConfig levelConfig)
+		public void InitSession(LevelData levelConfig)
 		{
 			Debug.Log("Init Session");
 			Initialize();
@@ -74,7 +74,7 @@ namespace CodeBase.Infrastructure.CoreEngine
 			}
 		}
 
-		void CreateLevelFromTemplate(LevelConfig config) =>
+		void CreateLevelFromTemplate(LevelData config) =>
 			LevelRequestFactory.Create(world, config,true);
 	}
 }

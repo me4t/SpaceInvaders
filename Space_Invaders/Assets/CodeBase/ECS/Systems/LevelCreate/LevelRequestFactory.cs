@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using CodeBase.Configs;
 using CodeBase.ECS.Systems.Factories;
 using CodeBase.Enums;
+using CodeBase.Services.StaticData;
 using Leopotam.EcsLite;
 using Unity.Mathematics;
 
@@ -9,19 +10,15 @@ namespace CodeBase.ECS.Systems.LevelCreate
 {
 	public class LevelRequestFactory
 	{
-		public static int Create(EcsWorld world, LevelConfig config, bool withPlayer = false)
+		public static int Create(EcsWorld world, LevelData config, bool withPlayer = false)
 		{
 			var entity = world.NewEntity();
 
 			var reqeustsPool = world.GetPool<RoundCreateRequest>();
 
 			ref var requestComponent = ref reqeustsPool.Add(entity);
-			requestComponent.Config = new LevelData();
-			requestComponent.Config.PlayerSpawnPoint = config.PlayerSpawnPoint;
-			requestComponent.Config.aliens = config.aliens;
-			requestComponent.Config.Key = config.Key;
-			requestComponent.withPlayer = withPlayer;
-
+			requestComponent.Config = config;
+			requestComponent.WithPlayer = withPlayer;			
 			return entity;
 		}
 	}
@@ -106,7 +103,7 @@ namespace CodeBase.ECS.Systems.LevelCreate
 
 	public class PlayerFactory
 	{
-		public static int Create(EcsWorld world, PlayerCreateData config)
+		public static int Create(EcsWorld world, PlayerData config)
 		{
 			var entity = world.NewEntity();
 

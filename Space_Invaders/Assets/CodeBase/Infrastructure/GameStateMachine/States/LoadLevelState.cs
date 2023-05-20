@@ -1,5 +1,5 @@
 using CodeBase.CompositionRoot;
-using CodeBase.Configs;
+using CodeBase.ECS.Systems.LevelCreate;
 using CodeBase.Infrastructure.CoreEngine;
 using CodeBase.Services.SceneLoader;
 using CodeBase.Services.StaticData;
@@ -37,7 +37,7 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 		private void OnLoaded()
 		{
 			Debug.Log("Scene Loaded");
-			LevelConfig levelConfig = staticDataService.ForLevelTemplate(1);
+			var levelConfig = staticDataService.ForLevelTemplate(1);
             
 			InitSession(levelConfig);
 			PreWarmCore(); 
@@ -45,7 +45,7 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 			gameStateMachine.Enter<GameLoopState>();
 		}
 
-		private void InitSession(LevelConfig levelConfig) => 
+		private void InitSession(LevelData levelConfig) => 
 			coreEngine.InitSession(levelConfig);
 
 		private void PreWarmCore() => 
