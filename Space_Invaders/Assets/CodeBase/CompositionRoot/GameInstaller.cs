@@ -58,13 +58,13 @@ namespace CodeBase.CompositionRoot
 
 		private void BindInputService() => Container.BindInterfacesTo<StandaloneInputService>().AsSingle();
 
-		private void BindCoroutineRunner() =>
+		private void BindHudService() =>
 			Container
 				.BindInterfacesTo<HudService>()
 				.FromComponentInNewPrefabResource(Path.Hud)
 				.AsSingle();
 		
-		private void BindHudService() =>
+		private void BindCoroutineRunner() =>
 			Container
 				.Bind<CoroutineRunner>()
 				.FromComponentInNewPrefabResource(Path.CoroutineRunner)

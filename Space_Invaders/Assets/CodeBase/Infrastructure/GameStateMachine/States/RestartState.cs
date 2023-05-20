@@ -22,7 +22,7 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 
 		private void CleanUp()
 		{
-			coreEngine.Cleanup();
+			//coreEngine.Cleanup();
 		}
 
 		public void Exit()

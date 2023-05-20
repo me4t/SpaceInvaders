@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using Object = UnityEngine.Object;
 
 namespace CodeBase.Services.SceneLoader
 {
@@ -19,12 +18,12 @@ namespace CodeBase.Services.SceneLoader
 		{
 		 SceneManager.LoadScene(Constants.CleanUpScene,LoadSceneMode.Single);
 		 Scene clear = SceneManager.GetSceneByName(Constants.CleanUpScene);
-		 
+
 		 while (!clear.isLoaded)
 			 yield return null;
 		 
 		 SceneManager.SetActiveScene(clear);
-		 SceneManager.LoadScene(nextScene,LoadSceneMode.Single);
+		 SceneManager.LoadScene(nextScene,LoadSceneMode.Single); 
 		 
 		 Scene scene = SceneManager.GetSceneByName(nextScene);
 			while (!scene.isLoaded)
