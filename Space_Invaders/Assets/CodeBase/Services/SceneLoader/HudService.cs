@@ -11,6 +11,7 @@ namespace CodeBase.Services.SceneLoader
 	{
 		void UpdateScore(float current);
 		void UpdateRound(int current);
+		void UpdateHp(float current,float max);
 		void UpdateBullets(Dictionary<BulletType, int> bulletOwnerBullets);
 	}
 
@@ -19,7 +20,7 @@ namespace CodeBase.Services.SceneLoader
 		[SerializeField] private TextMeshProUGUI Score;
 		[SerializeField] private TextMeshProUGUI Round;
 		[SerializeField] private TextMeshProUGUI Bullets;
-		private StringBuilder stringBuilder;
+		[SerializeField] private HpBar hpBar;
 
 		public void UpdateScore(float current)
 		{
@@ -31,14 +32,18 @@ namespace CodeBase.Services.SceneLoader
 			Round.text = $"Round: {current}";
 		}
 
+		public void UpdateHp(float current, float max)
+		{
+			hpBar.ChangeFill(current/max);
+		}
+
 		public void UpdateBullets(Dictionary<BulletType, int> bullets)
 		{
-			stringBuilder = new StringBuilder();
-			foreach (var count in bullets.Keys)
-			{
-				stringBuilder.Append("Bullets : ");
-				stringBuilder.Append($"Bullets : {count.ToString()} \nCount : {bullets[count]}");
-			}
+			var stringBuilder = new StringBuilder();
+			stringBuilder.Append("Bullets : ");
+			foreach (var key in bullets.Keys)
+				stringBuilder.Append(Environment.NewLine + $"{key.ConvertToString()} : {bullets[key]}");
+			
 			Bullets.text = stringBuilder.ToString();
 
 		}

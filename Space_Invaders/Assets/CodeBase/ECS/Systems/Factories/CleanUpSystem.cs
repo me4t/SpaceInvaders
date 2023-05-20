@@ -8,6 +8,7 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsWorld world;
 		private EcsFilter filter;
 		private EcsFilter filterNextRound;
+		private EcsFilter collisionHittableFilter;
 
 
 		public void Init(IEcsSystems systems)
@@ -15,6 +16,7 @@ namespace CodeBase.ECS.Systems.Factories
 			world = systems.GetWorld();
 			filter = world.Filter<RoundPassed>().End();
 			filterNextRound = world.Filter<NextRoundEvent>().End();
+			collisionHittableFilter = world.Filter<CollisionHittableWithDamageDealer>().End();
 		}
 		
 
@@ -22,11 +24,16 @@ namespace CodeBase.ECS.Systems.Factories
 		{
 			CleanRoundCompleted();
 			CleanNextRoundEvent();
+			CleanCollisionHittableWithDamageDealer();
 		}
 
 		private void CleanRoundCompleted()
 		{
 			foreach (var entity in filter) world.DelEntity(entity);
+		}
+		private void CleanCollisionHittableWithDamageDealer()
+		{
+			foreach (var entity in collisionHittableFilter) world.DelEntity(entity);
 		}
 		private void CleanNextRoundEvent()
 		{

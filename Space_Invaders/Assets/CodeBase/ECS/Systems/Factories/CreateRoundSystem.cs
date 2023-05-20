@@ -77,6 +77,7 @@ namespace CodeBase.ECS.Systems.Factories
 			data.BodySize = alienConfig.Size;
 			data.BulletType = alienConfig.BulletType;
 			data.BulletCount = alienConfig.BaseBulletCount;
+			data.Health = alienConfig.Health; 
 			PlayerFactory.Create(world, data);
 		}
 	}
@@ -106,6 +107,7 @@ namespace CodeBase.ECS.Systems.Factories
 		public float BodySize;
 		public BulletType BulletType;
 		public int BulletCount;
+		public float Health;
 	}
 
 	public class BulletCreateData

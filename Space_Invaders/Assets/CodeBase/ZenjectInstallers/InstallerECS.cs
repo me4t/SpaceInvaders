@@ -52,6 +52,7 @@ namespace CodeBase.ZenjectInstallers
 			BindSystem<PlayerShootSystem>();
 			BindSystem<CreateBulletViewSystem>();
 			BindSystem<FlySystem>();
+			BindSystem<CheckPlayerCollisionWithAlienSystem>();
 			BindSystem<CheckBulletCollisionSystem>();
 			BindSystem<CheckLootCollisionSystem>();
 			BindSystem<PickUpLootSystem>();
@@ -63,6 +64,7 @@ namespace CodeBase.ZenjectInstallers
 			BindSystem<ScoreSystem>();
 			BindSystem<SetNextRoundSystem>();
 			BindSystem<UpdateRoundSystem>();
+			BindSystem<HpBarSystem>();
 			BindSystem<UpdateBulletCountSystem>();
 			BindSystem<DestroyViewAliensSystem>();
 			BindSystem<DestroyMissingBulletsSystem>();

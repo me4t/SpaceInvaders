@@ -34,57 +34,29 @@ namespace CodeBase.ECS.Systems.Factories
 		public void Run(IEcsSystems systems)
 		{
 			if (InputIsEmpty()) return;
-			
+
 			foreach (var entity in filter)
 			{
 				ref var speed = ref speedPool.Get(entity);
 				ref var position = ref positionPool.Get(entity);
 
 				var newPosition = position.Value;
-				newPosition.x += inputService.Horizontal * speed.Value * timeService.DeltaTime;
-				newPosition.z += inputService.Vertical * speed.Value * timeService.DeltaTime;
+				if (IsInBoundsZ(newPosition.z + inputService.Vertical))
+					newPosition.z += inputService.Vertical;
+				if (IsInBoundsX(newPosition: newPosition.x + inputService.Horizontal))
+					newPosition.x += inputService.Horizontal;
 
-				position.Value = MathHelpers.MoveTowards(position.Value, newPosition, 0.1f);
+				position.Value = MathHelpers.MoveTowards(position.Value, newPosition, speed.Value * timeService.DeltaTime);
 			}
 		}
 
-		private bool InputIsEmpty() => 
+		private static bool IsInBoundsX(float3 newPosition) => 
+			newPosition.x is > Constants.MinBoardLimitX and < Constants.MaxBoardLimitX;
+
+		private static bool IsInBoundsZ(float3 newPosition) => 
+			newPosition.z is > Constants.MinBoardLimitZ and < Constants.MaxBoardLimitZ;
+
+		private bool InputIsEmpty() =>
 			inputService.Horizontal == 0 && inputService.Vertical == 0;
-	}
-
-	public class MathHelpers
-	{
-		public static bool IsSpheresIntersect(float3 pos1, float3 pos2, float radius1, float radius2)
-		{
-			float radius = radius1 + radius2;
-			var delta = pos2 - pos1;
-			return MathHelpers.SqrMagnitude(delta) < radius * radius;
-		}
-		public static float3 MoveTowards(float3 current, float3 target, float maxDistanceDelta)
-		{
-			float deltaX = target.x - current.x;
-			float deltaY = target.y - current.y;
-			float deltaZ = target.z - current.z;
-			float sqdist = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
-			if (sqdist == 0 || sqdist <= maxDistanceDelta * maxDistanceDelta)
-				return target;
-			var dist = math.sqrt(sqdist);
-			return new float3(current.x + deltaX / dist * maxDistanceDelta,
-				current.y + deltaY / dist * maxDistanceDelta,
-				current.z + deltaZ / dist * maxDistanceDelta);
-		}
-		public static float SqrMagnitude(float3 a)
-		{
-			return a.x * a.x + a.y * a.y + a.z * a.z;
-		}
-
-		public static float Square(float value)
-		{
-			return value * value;
-		}
-		public static float Distance(float3 from,float3 to)
-		{
-			return math.sqrt(Square(from.x - to.x)) + Square(from.y - to.y) + Square(from.z - to.z);
-		}
 	}
 }

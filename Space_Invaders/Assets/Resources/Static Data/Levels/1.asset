@@ -17,7 +17,7 @@ MonoBehaviour:
     PlayerInitialPoint:
       x: 0
       y: 0
-      z: -39.6
+      z: -48.7
     PlayerType: 1
   aliens:
   - Position:

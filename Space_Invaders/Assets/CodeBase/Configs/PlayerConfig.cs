@@ -14,5 +14,6 @@ namespace CodeBase.Configs
 		public float Size;
 		public BulletType BulletType = BulletType.Fire;
 		public int BaseBulletCount = 100;
+		public int Health = 100;
 	}
 }

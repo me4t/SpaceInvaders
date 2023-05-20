@@ -21,7 +21,7 @@ namespace CodeBase.ECS.Systems.Factories
 		public void Init(IEcsSystems systems)
 		{
 			world = systems.GetWorld();
-			filter = world.Filter<Player>().Exc<View>().End();
+			filter = world.Filter<Player>().Exc<View>().Exc<Dead>().Exc<DeathEvent>().End();
 
 			viewPool = world.GetPool<View>();
 			spawnEventPool = world.GetPool<SpawnEvent>();

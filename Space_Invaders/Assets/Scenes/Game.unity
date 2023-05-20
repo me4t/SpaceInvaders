@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 441527929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -39.6}
+  m_LocalPosition: {x: 0, y: 0, z: -48.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -398,8 +398,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 50
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -423,7 +423,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026750070}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 100, z: -10}
+  m_LocalPosition: {x: 0, y: 80, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -460,14 +460,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    Amount: 40
-    Radius: 5
-    RadiusGrowthMultiplier: 0.14
-    Rotations: 2
-    Rings: 1
-    RingOffset: 0
-    NthOffset: 0
-    Spread: 1.5
+    Amount: 30
+    Radius: 8.04
+    RadiusGrowthMultiplier: 1
+    Rotations: 3.65
+    Rings: 2
+    RingOffset: 3
+    NthOffset: 1
+    Spread: 0.5
     Noise: 0
     UnitGizmoSize: {x: 1, y: 1, z: 1}
     GizmoColor: {r: 1, g: 0, b: 0, a: 1}

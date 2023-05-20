@@ -1,5 +1,6 @@
 using CodeBase.ECS.Systems.LevelCreate;
 using Leopotam.EcsLite;
+using UnityEngine;
 
 namespace CodeBase.ECS.Systems.Factories
 {
@@ -9,17 +10,19 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsFilter filter;
 		private EcsPool<SpawnEvent> spawnEventPool;
 		private EcsFilter filterRound;
-		private EcsPool<CollisionHittableWithBullet> collisionEventPool;
+		private EcsPool<CollisionHittableWithDamageDealer> collisionEventPool;
 		private EcsPool<Damage> damagePool;
 		private EcsPool<DamageDealer> damageDealerPool;
+		private EcsPool<Bullet> bulletPool;
 
 		public void Init(IEcsSystems systems)
 		{
 			world = systems.GetWorld();
-			filter = world.Filter<CollisionHittableWithBullet>().End();
-			collisionEventPool = world.GetPool<CollisionHittableWithBullet>();
+			filter = world.Filter<CollisionHittableWithDamageDealer>().End();
+			collisionEventPool = world.GetPool<CollisionHittableWithDamageDealer>();
 			damagePool = world.GetPool<Damage>();
 			damageDealerPool = world.GetPool<DamageDealer>();
+			bulletPool = world.GetPool<Bullet>();
 		}
 
 
@@ -29,15 +32,18 @@ namespace CodeBase.ECS.Systems.Factories
 			{
 				ref var collisionEvent = ref collisionEventPool.Get(collision);
 				if (!collisionEvent.Hittable.Unpack(world, out int hittable)) continue;
-				if (!collisionEvent.Bullet.Unpack(world, out int bullet)) continue;
-
+				if (!collisionEvent.DamageDealer.Unpack(world, out int dealer)) continue;
+				
+				Debug.Log(dealer);
 
 				var newEntity = world.NewEntity();
 				ref var damage = ref damagePool.Add(newEntity);
-				ref var damageDealer = ref damageDealerPool.Get(bullet);
+				
+				Debug.Log(damageDealerPool.Has(dealer));
+				ref var damageDealer = ref damageDealerPool.Get(dealer);
 				damage.Value = damageDealer.Value;
 				damage.Target = world.PackEntity(hittable);
-				world.DelEntity(bullet);
+				if (bulletPool.Has(dealer)) world.DelEntity(dealer);
 			}
 		}
 	}

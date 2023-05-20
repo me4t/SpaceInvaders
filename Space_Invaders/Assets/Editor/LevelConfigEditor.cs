@@ -16,9 +16,8 @@ namespace Editor
 
 			LevelConfig levelData = (LevelConfig)target;
 
-			if (GUILayout.Button("Collect"))
+			if (GUILayout.Button("Bake Formations"))
 			{
-
 				var alienSpawn = FindObjectOfType<AlienSpawn>();
 				List<AlienSpawnPoint> alienSpawnPoints = new List<AlienSpawnPoint>();
 
@@ -32,6 +31,9 @@ namespace Editor
 				}
 
 				levelData.aliens = alienSpawnPoints;
+			}
+			if (GUILayout.Button("Bake InitialPoint"))
+			{
 				var initialPoint = GameObject.FindGameObjectWithTag("InitialPoint");
 				levelData.PlayerSpawnPoint = new PlayerSpawnPoint();
 				

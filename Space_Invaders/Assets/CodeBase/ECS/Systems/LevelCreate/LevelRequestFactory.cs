@@ -51,6 +51,10 @@ namespace CodeBase.ECS.Systems.LevelCreate
 			var hittablePool = world.GetPool<Hittable>();
 			ref var hittable = ref hittablePool.Add(entity);
 
+			var damageDealerPool = world.GetPool<DamageDealer>();
+			ref var dealer = ref damageDealerPool.Add(entity);
+			dealer.Value = 10;
+
 
 			var healthPool = world.GetPool<Health>();
 			ref var health = ref healthPool.Add(entity);
@@ -77,6 +81,13 @@ namespace CodeBase.ECS.Systems.LevelCreate
 			ref var moveTime = ref moveTimePool.Add(entity);
 			moveTime.WalkDelay = 0.5f;
 
+			var collideWithBulletPool = world.GetPool<CanCollideWithBullet>();
+			collideWithBulletPool.Add(entity);
+
+			var collideWithPlayerPool = world.GetPool<CanCollideWithPlayer>();
+			collideWithPlayerPool.Add(entity);
+
+
 			var random = new System.Random();
 			int randomChance = random.Next(0, 100);
 
@@ -86,7 +97,6 @@ namespace CodeBase.ECS.Systems.LevelCreate
 				ref var bulletLoot = ref bulletLootPool.Add(entity);
 				var nextInt = random.Next(0, config.BulletLoot.Count);
 				bulletLoot.Type = config.BulletLoot[nextInt];
-			
 			}
 
 
@@ -128,8 +138,19 @@ namespace CodeBase.ECS.Systems.LevelCreate
 			bulletOwner.Bullets = new Dictionary<BulletType, int>();
 			bulletOwner.Bullets.Add(config.BulletType, config.BulletCount);
 
+			var collideWithBulletPool = world.GetPool<CanCollideWithAlien>();
+			collideWithBulletPool.Add(entity);
+
 			var update = world.GetPool<UpdateBulletCountEvent>();
 			update.Add(entity);
+
+			var healthPool = world.GetPool<Health>();
+			ref var health = ref healthPool.Add(entity);
+			health.Max = config.Health;
+			health.Current = config.Health;
+			
+			var hittablePool = world.GetPool<Hittable>();
+			hittablePool.Add(entity);	
 
 			return entity;
 		}
@@ -155,6 +176,10 @@ namespace CodeBase.ECS.Systems.LevelCreate
 			var speedPool = world.GetPool<Speed>();
 			ref var speed = ref speedPool.Add(entity);
 			speed.Value = config.Speed;
+
+			var collideWithPool = world.GetPool<CanCollideWithAlien>();
+			collideWithPool.Add(entity);
+
 
 			var bodySize = world.GetPool<BodySize>();
 			ref var size = ref bodySize.Add(entity);
@@ -251,6 +276,18 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	{
 	}
 
+	public struct CanCollideWithAlien
+	{
+	}
+
+	public struct CanCollideWithBullet
+	{
+	}
+
+	public struct CanCollideWithPlayer
+	{
+	}
+
 	public struct Hittable
 	{
 	}
@@ -271,11 +308,16 @@ namespace CodeBase.ECS.Systems.LevelCreate
 		public float3 Value;
 	}
 
+	public struct OutOfBounds
+	{
+	}
+
 	public struct BulletLoot
 	{
 		public BulletType Type;
 		public int Count;
 	}
+
 	public struct SpawnBulletLoot
 	{
 		public BulletType Type;
@@ -347,10 +389,16 @@ namespace CodeBase.ECS.Systems.LevelCreate
 		public EcsPackedEntity Loot;
 	}
 
-	public struct CollisionHittableWithBullet
+	public struct CollisionHittableWithDamageDealer
 	{
 		public EcsPackedEntity Hittable;
-		public EcsPackedEntity Bullet;
+		public EcsPackedEntity DamageDealer;
+	}
+
+	public struct CollisionPlayerWithAlien
+	{
+		public EcsPackedEntity Player;
+		public EcsPackedEntity Alien;
 	}
 
 	public struct ScoreLoot

@@ -17,7 +17,7 @@ MonoBehaviour:
     PlayerInitialPoint:
       x: 0
       y: 0
-      z: -39.6
+      z: -48.7
     PlayerType: 1
   aliens:
   - Position:
@@ -26,197 +26,147 @@ MonoBehaviour:
       z: 60
     AlienType: 1
   - Position:
-      x: 7.332646
+      x: 5.1589966
       y: 4.83
-      z: 62.382523
+      z: 65.729645
     AlienType: 1
   - Position:
-      x: 6.4074144
+      x: -0.82786584
       y: 4.83
-      z: 64.65526
+      z: 67.87662
     AlienType: 1
   - Position:
-      x: 4.778694
+      x: -6.5773087
       y: 4.83
-      z: 66.57731
+      z: 64.778694
     AlienType: 1
   - Position:
-      x: 2.5772016
+      x: -8.157751
       y: 4.83
-      z: 67.93181
+      z: 58.266014
     AlienType: 1
   - Position:
-      x: -0.00000037373235
+      x: -4.274999
       y: 4.83
-      z: 68.55
+      z: 52.59548
     AlienType: 1
   - Position:
-      x: -2.7069893
+      x: 2.7069902
       y: 4.83
-      z: 68.33125
+      z: 51.668747
     AlienType: 1
   - Position:
-      x: -5.2724333
+      x: 8.194504
       y: 4.83
-      z: 67.25688
+      z: 56.351574
     AlienType: 1
   - Position:
-      x: -7.4267764
+      x: 8.386347
       y: 4.83
-      z: 65.39587
+      z: 63.733845
     AlienType: 1
   - Position:
-      x: -8.930422
+      x: 2.9016676
       y: 4.83
-      z: 62.90167
+      z: 68.93042
     AlienType: 1
   - Position:
-      x: -9.6
+      x: -4.800002
       y: 4.83
-      z: 60
+      z: 68.31384
     AlienType: 1
   - Position:
-      x: -9.3298645
+      x: -9.595629
       y: 4.83
-      z: 56.968544
+      z: 62.03961
     AlienType: 1
   - Position:
-      x: -8.10635
+      x: -8.106348
       y: 4.83
       z: 54.11039
     AlienType: 1
   - Position:
-      x: -6.0130415
+      x: -1.0693231
       y: 4.83
-      z: 51.723755
+      z: 49.826042
     AlienType: 1
   - Position:
-      x: -3.2261386
+      x: 6.9857264
       y: 4.83
-      z: 50.07097
+      z: 52.24157
     AlienType: 1
   - Position:
-      x: 0.00000012699998
+      x: 7.174008
       y: 4.83
-      z: 49.35
+      z: 69.61944
     AlienType: 1
   - Position:
-      x: 3.355926
+      x: -2.3893845
       y: 4.83
-      z: 49.671528
+      z: 71.97393
     AlienType: 1
   - Position:
-      x: 6.5067854
+      x: -10.677713
       y: 4.83
-      z: 51.04418
+      z: 66.34372
     AlienType: 1
   - Position:
-      x: 9.125715
+      x: -12.059607
       y: 4.83
-      z: 53.369785
+      z: 56.247295
     AlienType: 1
   - Position:
-      x: 10.927639
+      x: -5.368453
       y: 4.83
-      z: 56.449394
+      z: 48.33615
     AlienType: 1
   - Position:
-      x: 11.700001
+      x: 5.158746
       y: 4.83
-      z: 60.000004
+      z: 48.01293
     AlienType: 1
   - Position:
-      x: 11.327083
+      x: 12.558901
       y: 4.83
-      z: 63.680397
+      z: 55.7454
     AlienType: 1
   - Position:
-      x: 9.805285
+      x: 11.748489
       y: 4.83
-      z: 67.123955
+      z: 66.58892
     AlienType: 1
   - Position:
-      x: 7.2473917
+      x: 3.010972
       y: 4.83
-      z: 69.97518
+      z: 73.34453
     AlienType: 1
   - Position:
-      x: 3.8750703
+      x: -8.023495
       y: 4.83
-      z: 71.92625
+      z: 71.33824
     AlienType: 1
   - Position:
-      x: -0.0000043065197
+      x: -14.003277
       y: 4.83
-      z: 72.75
+      z: 61.648697
     AlienType: 1
   - Position:
-      x: -4.0048666
+      x: -10.753044
       y: 4.83
-      z: 72.32569
+      z: 50.55817
     AlienType: 1
   - Position:
-      x: -7.7411375
+      x: -0.18116441
       y: 4.83
-      z: 70.65475
+      z: 45.48113
     AlienType: 1
   - Position:
-      x: -10.824646
+      x: 10.822696
       y: 4.83
-      z: 67.86457
+      z: 50.007896
     AlienType: 1
   - Position:
-      x: -12.924858
+      x: 14.876486
       y: 4.83
-      z: 64.19954
-    AlienType: 1
-  - Position:
-      x: -13.799999
-      y: 4.83
-      z: 60
-    AlienType: 1
-  - Position:
-      x: -13.324302
-      y: 4.83
-      z: 55.67067
-    AlienType: 1
-  - Position:
-      x: -11.504218
-      y: 4.83
-      z: 51.641693
-    AlienType: 1
-  - Position:
-      x: -8.481736
-      y: 4.83
-      z: 48.325882
-    AlienType: 1
-  - Position:
-      x: -4.5240016
-      y: 4.83
-      z: 46.07653
-    AlienType: 1
-  - Position:
-      x: 0.000009854572
-      y: 4.83
-      z: 45.15
-    AlienType: 1
-  - Position:
-      x: 4.653807
-      y: 4.83
-      z: 45.677094
-    AlienType: 1
-  - Position:
-      x: 8.975481
-      y: 4.83
-      z: 47.64631
-    AlienType: 1
-  - Position:
-      x: 12.523584
-      y: 4.83
-      z: 50.901085
-    AlienType: 1
-  - Position:
-      x: 14.922079
-      y: 4.83
-      z: 55.151527
+      z: 61.376152
     AlienType: 1
