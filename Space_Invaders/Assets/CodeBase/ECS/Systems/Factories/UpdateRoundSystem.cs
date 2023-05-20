@@ -1,5 +1,6 @@
 using CodeBase.ECS.Systems.LevelCreate;
 using CodeBase.Services.SceneLoader;
+using CodeBase.Services.StaticData;
 using Leopotam.EcsLite;
 
 namespace CodeBase.ECS.Systems.Factories
@@ -7,16 +8,17 @@ namespace CodeBase.ECS.Systems.Factories
 	public class UpdateRoundSystem : IEcsInitSystem, IEcsRunSystem
 	{
 		private readonly IHudService hudService;
+		private readonly IPlayerProgressService playerProgressService;
 		private EcsWorld world;
 		private EcsFilter filter;
 		private EcsPool<SpawnEvent> spawnEventPool;
 		private EcsPool<Bullet> bulletPool;
-		private int current;
 
 
-		public UpdateRoundSystem(IHudService hudService)
+		public UpdateRoundSystem(IHudService hudService,IPlayerProgressService playerProgressService)
 		{
 			this.hudService = hudService;
+			this.playerProgressService = playerProgressService;
 		}
 
 		public void Init(IEcsSystems systems)
@@ -29,11 +31,11 @@ namespace CodeBase.ECS.Systems.Factories
 		{
 			foreach (var entity in filter)
 			{
-				current++;
+				var playerProgress = playerProgressService.Progress;
+				hudService.UpdateRound(playerProgress.RoundCount);
 				world.DelEntity(entity);
 			}
 
-			hudService.UpdateRound(current);
 		}
 	}
 }

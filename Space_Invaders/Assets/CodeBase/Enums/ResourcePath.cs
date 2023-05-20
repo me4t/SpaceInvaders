@@ -11,5 +11,6 @@ namespace CodeBase.Enums
 		[Description("Views/Bullets/MagicBullet")] MagicBullet = 42,
 		[Description("Views/Loot/IceLootBullet")] IceLootBullet = 50,
 		[Description("Views/Loot/FireLootBullet")] FireLootBullet = 51,
+		[Description("UI/GameOver")] GameOverWindow = 60,
 	}
 }

@@ -8,22 +8,22 @@ namespace CodeBase.ECS.Systems.Factories
 	public class SetNextRoundSystem : IEcsInitSystem, IEcsRunSystem
 	{
 		private readonly IStaticDataService staticDataService;
+		private readonly IPlayerProgressService playerProgressService;
 		private EcsWorld world;
 		private EcsFilter filter;
 		private EcsPool<SpawnEvent> spawnEventPool;
 		private EcsPool<Bullet> bulletPool;
-		private EcsPool<NextRoundEvent> nextRoundPool;
 
-		public SetNextRoundSystem(IStaticDataService staticDataService)
+		public SetNextRoundSystem(IStaticDataService staticDataService,IPlayerProgressService playerProgressService)
 		{
 			this.staticDataService = staticDataService;
+			this.playerProgressService = playerProgressService;
 		}
 
 		public void Init(IEcsSystems systems)
 		{
 			world = systems.GetWorld();
 			filter = world.Filter<RoundPassed>().End();
-			nextRoundPool = world.GetPool<NextRoundEvent>();
 		}
 		
 
@@ -33,8 +33,8 @@ namespace CodeBase.ECS.Systems.Factories
 			{
 				var random = new Random();
 				var configKey = random.Next(1,staticDataService.TemplateCount);
+				playerProgressService.Progress.RoundCount++;
 				LevelRequestFactory.Create(world,staticDataService.ForLevelTemplate(configKey));
-				nextRoundPool.Add(world.NewEntity());
 			}
 		}
 	}

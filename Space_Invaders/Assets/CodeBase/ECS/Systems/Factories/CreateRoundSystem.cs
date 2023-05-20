@@ -5,7 +5,6 @@ using CodeBase.Enums;
 using CodeBase.Services.StaticData;
 using Leopotam.EcsLite;
 using Unity.Mathematics;
-using UnityEngine;
 
 namespace CodeBase.ECS.Systems.Factories
 {
@@ -16,6 +15,8 @@ namespace CodeBase.ECS.Systems.Factories
 		private EcsFilter requestsFilter;
 		private EcsPool<RoundCreateRequest> requestPool;
 		private EcsPool<Used> usedPool;
+		private EcsPool<NextRoundEvent> nextRoundEvent;
+		private EcsPool<UpdateBulletCountEvent> updateBulletPool;
 
 		public CreateRoundSystem(IStaticDataService staticDataService)
 		{
@@ -28,6 +29,8 @@ namespace CodeBase.ECS.Systems.Factories
 			requestsFilter = world.Filter<RoundCreateRequest>().Exc<Used>().End();
 
 			requestPool = world.GetPool<RoundCreateRequest>();
+			nextRoundEvent = world.GetPool<NextRoundEvent>();
+			updateBulletPool = world.GetPool<UpdateBulletCountEvent>();
 			usedPool = world.GetPool<Used>();
 		}
 
@@ -43,7 +46,8 @@ namespace CodeBase.ECS.Systems.Factories
 
 				if (levelCreateRequest.withPlayer) CreatePlayer(levelConfig.PlayerSpawnPoint);
 				usedPool.Add(entity);
-				Debug.Log("CreateLeveL System");
+				nextRoundEvent.Add(world.NewEntity());
+				updateBulletPool.Add(world.NewEntity());
 			}
 		}
 

@@ -25,7 +25,7 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 
 		public void Exit()
 		{
-			
+			loadingCurtain.Show();
 		} 
 
 		public void FixedTick()

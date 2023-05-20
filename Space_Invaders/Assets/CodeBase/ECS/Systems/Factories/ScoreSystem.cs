@@ -8,18 +8,19 @@ namespace CodeBase.ECS.Systems.Factories
 	public class ScoreSystem : IEcsInitSystem, IEcsRunSystem
 	{
 		private readonly IHudService hudService;
+		private readonly IPlayerProgressService playerProgressService;
 		private EcsWorld world;
 		private EcsFilter filter;
 		private EcsPool<SpawnEvent> spawnEventPool;
 		private EcsPool<Bullet> bulletPool;
 		private float delay;
 		private EcsPool<UpdateScore> updateScorePool;
-		private float current;
 
 
-		public ScoreSystem(IHudService hudService)
+		public ScoreSystem(IHudService hudService,IPlayerProgressService playerProgressService)
 		{
 			this.hudService = hudService;
+			this.playerProgressService = playerProgressService;
 		}
 
 		public void Init(IEcsSystems systems)
@@ -34,12 +35,11 @@ namespace CodeBase.ECS.Systems.Factories
 			foreach (var entity in filter)
 			{
 				ref var updateScore = ref updateScorePool.Get(entity);
-				current += updateScore.Value;
+				playerProgressService.Progress.Score += updateScore.Value;
 				world.DelEntity(entity);
 
 			}
-
-			hudService.UpdateScore(current);
+			hudService.UpdateScore(playerProgressService.Progress.Score);
 		}
 	}
 }

@@ -12,5 +12,22 @@ namespace CodeBase.Services.StaticData
 		PlayerConfig ForPlayer(PlayerType spawnPointPlayerType);
 		BulletConfig ForBullet(BulletType ice);
 		BulletLootConfig ForBulletLoot(BulletType scoreLootType);
+		WindowConfig ForWindow(WindowId windowId);
+	}
+
+	public interface IPlayerProgressService
+	{
+		PlayerProgress Progress { get; set; }
+	}
+
+	public class PlayerProgressService:IPlayerProgressService
+	{
+		public PlayerProgress Progress { get; set; }
+	}
+
+	public class PlayerProgress
+	{
+		public int RoundCount = 0;
+		public float Score = 0;
 	}
 }

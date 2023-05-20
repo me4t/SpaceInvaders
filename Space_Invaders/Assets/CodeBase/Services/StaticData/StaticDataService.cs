@@ -13,12 +13,14 @@ namespace CodeBase.Services.StaticData
 		private Dictionary<PlayerType, PlayerConfig> players;
 		private Dictionary<BulletType, BulletConfig> bullets;
 		private Dictionary<BulletType, BulletLootConfig> loots;
+		private Dictionary<WindowId, WindowConfig> windowConfigs;
 
 		private const string AlienConfigsPath = "Static Data/Aliens";
 		private const string LevelsPath = "Static Data/Levels";
 		private const string PlayersPath = "Static Data/Player";
 		private const string BulletsPath = "Static Data/Bullets";
 		private const string LootBulletsPath = "Static Data/Loot/Bullets";
+		private const string StaticDataWindowPath = "Static Data/UI/WindowStaticData";
 
 		public void Load()
 		{
@@ -41,6 +43,12 @@ namespace CodeBase.Services.StaticData
 			loots = Resources
 				.LoadAll<BulletLootConfig>(LootBulletsPath)
 				.ToDictionary(x => x.Type, x => x);
+			
+			
+			windowConfigs = Resources
+				.Load<WindowStaticData>(StaticDataWindowPath)
+				.Configs
+				.ToDictionary(x => x.WindowId, x => x);
 		}
 
 		public LevelConfig ForLevelTemplate(int key) =>
@@ -67,6 +75,11 @@ namespace CodeBase.Services.StaticData
 
 		public BulletLootConfig ForBulletLoot(BulletType id) =>
 			loots.TryGetValue(id, out BulletLootConfig staticData)
+				? staticData
+				: null;
+
+		public WindowConfig ForWindow(WindowId windowId)=>
+			windowConfigs.TryGetValue(windowId, out WindowConfig staticData)
 				? staticData
 				: null;
 	}

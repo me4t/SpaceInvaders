@@ -27,14 +27,14 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 
 		public void Enter(string sceneName)
 		{
-			sceneLoader.Load(sceneName,()=> OnLoaded(sceneName));
+			sceneLoader.Load(sceneName, OnLoaded);
 		}
 
 		public void Exit()
 		{
 		}
 
-		private void OnLoaded(string sceneName)
+		private void OnLoaded()
 		{
 			Debug.Log("Scene Loaded");
 			LevelConfig levelConfig = staticDataService.ForLevelTemplate(1);

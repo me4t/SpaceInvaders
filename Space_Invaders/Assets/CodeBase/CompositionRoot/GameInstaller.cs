@@ -13,6 +13,7 @@ namespace CodeBase.CompositionRoot
 	{
 		public override void InstallBindings()
 		{
+			BindPlayerProgressService();
 			BindTimeService();
 			BindInputService();
 			BindCoroutineRunner();
@@ -20,6 +21,7 @@ namespace CodeBase.CompositionRoot
 			BindSceneLoader();
 			BindLoadingCurtain();
 			BindStaticData();
+			BindUI();
 
 			BindViewsFactory();
 			
@@ -30,6 +32,7 @@ namespace CodeBase.CompositionRoot
 		
 
 		private void BindStaticData() => Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
+		private void BindPlayerProgressService() => Container.Bind<IPlayerProgressService>().To<PlayerProgressService>().AsSingle();
 		private void BindTimeService() => Container.Bind<ITimeService>().To<TimeService>().AsSingle();
 
 		private void BindSceneLoader() => Container.Bind<SceneLoader>().AsSingle();
@@ -79,6 +82,15 @@ namespace CodeBase.CompositionRoot
 				.Bind<IViewsFactory>()
 				.FromSubContainerResolve()
 				.ByInstaller<ViewsFactoryInstaller>()
+				.WithKernel()
+				.AsSingle();
+		}
+		private void BindUI()
+		{
+			Container
+				.Bind<IWindowService>()
+				.FromSubContainerResolve()
+				.ByInstaller<InstallerUI>()
 				.WithKernel()
 				.AsSingle();
 		}

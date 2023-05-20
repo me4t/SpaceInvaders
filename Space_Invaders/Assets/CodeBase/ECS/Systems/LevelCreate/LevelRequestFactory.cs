@@ -377,10 +377,13 @@ namespace CodeBase.ECS.Systems.LevelCreate
 		public float Radius;
 	}
 
-	public struct CollisionEvent
+	public struct GameOverRequest
 	{
-		public EcsPackedEntity First;
-		public EcsPackedEntity Second;
+		
+	}
+	public struct CleanUp
+	{
+		
 	}
 
 	public struct CollisionPlayerWithLoot
@@ -393,12 +396,6 @@ namespace CodeBase.ECS.Systems.LevelCreate
 	{
 		public EcsPackedEntity Hittable;
 		public EcsPackedEntity DamageDealer;
-	}
-
-	public struct CollisionPlayerWithAlien
-	{
-		public EcsPackedEntity Player;
-		public EcsPackedEntity Alien;
 	}
 
 	public struct ScoreLoot

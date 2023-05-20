@@ -11,6 +11,8 @@ namespace CodeBase.ZenjectInstallers
 			Container.BindFactory<IGameStateMachine, BootstrapState, BootstrapState.Factory>();
 			Container.BindFactory<IGameStateMachine, LoadLevelState, LoadLevelState.Factory>();
 			Container.BindFactory<IGameStateMachine, GameLoopState, GameLoopState.Factory>();
+			Container.BindFactory<IGameStateMachine, RestartState, RestartState.Factory>();
+			Container.BindFactory<IGameStateMachine, CreateProgressState, CreateProgressState.Factory>();
 
 			Container.Bind(typeof(IGameStateMachine), typeof(ITickable),typeof(IFixedTickable)).To<GameStateMachine>().AsSingle();
 		}

@@ -16,13 +16,17 @@ namespace CodeBase.Infrastructure.GameStateMachine
 		public GameStateMachine(
 			BootstrapState.Factory bootstrapStateFactory,
 			LoadLevelState.Factory loadLevelStateFactory,
-			GameLoopState.Factory gameLoopStateFactory)
+			GameLoopState.Factory gameLoopStateFactory,
+			RestartState.Factory restartFactory,
+			CreateProgressState.Factory createProgressFactory)
 		{
 			registeredStates = new Dictionary<Type, IExitableState>();
             
 			RegisterState(bootstrapStateFactory.Create(this));
 			RegisterState(loadLevelStateFactory.Create(this));
 			RegisterState(gameLoopStateFactory.Create(this));
+			RegisterState(restartFactory.Create(this));
+			RegisterState(createProgressFactory.Create(this));
 		}
         
 		public void Enter<TState>() where TState : class, IState

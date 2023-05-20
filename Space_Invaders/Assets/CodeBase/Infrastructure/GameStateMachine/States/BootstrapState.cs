@@ -1,4 +1,3 @@
-using CodeBase.CompositionRoot;
 using CodeBase.Services.StaticData;
 using UnityEngine;
 using Zenject;
@@ -9,20 +8,18 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 	{
 		private readonly IGameStateMachine gameStateMachine;
 		private readonly IStaticDataService staticDataService;
-		private readonly LoadingCurtain loadingCurtain;
 
-		public BootstrapState(IGameStateMachine gameStateMachine,IStaticDataService staticDataService,LoadingCurtain loadingCurtain)
+		public BootstrapState(IGameStateMachine gameStateMachine,IStaticDataService staticDataService)
 		{
 			this.gameStateMachine = gameStateMachine;
 			this.staticDataService = staticDataService;
-			this.loadingCurtain = loadingCurtain;
 		}
 
 		public void Enter()
 		{
 			Debug.Log("Entered BootstrapState ");
 			InitializeServices();
-			gameStateMachine.Enter<LoadLevelState, string>(Constants.MainSceneName);
+			gameStateMachine.Enter<CreateProgressState>();
 		}
 
 		private void InitializeServices()

@@ -69,6 +69,7 @@ namespace CodeBase.ZenjectInstallers
 			BindSystem<DestroyViewAliensSystem>();
 			BindSystem<DestroyMissingBulletsSystem>();
 			BindSystem<UpdateViewPositionSystem>();
+			BindSystem<CheckGameOverSystem>();
 			BindSystem<CleanUpSystem>();
 		}
 
