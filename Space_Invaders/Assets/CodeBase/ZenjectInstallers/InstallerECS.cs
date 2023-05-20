@@ -8,7 +8,9 @@ using CodeBase.ECS.Systems.Player;
 using CodeBase.ECS.Systems.UI;
 using CodeBase.Infrastructure.CoreEngine;
 using Leopotam.EcsLite;
+#if UNITY_EDITOR
 using Leopotam.EcsLite.UnityEditor;
+#endif
 using Zenject;
 
 namespace CodeBase.ZenjectInstallers
