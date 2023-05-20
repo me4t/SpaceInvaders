@@ -1,4 +1,11 @@
-using CodeBase.ECS.Systems.Factories;
+using CodeBase.ECS.Systems.Alien;
+using CodeBase.ECS.Systems.Create;
+using CodeBase.ECS.Systems.Gameloop;
+using CodeBase.ECS.Systems.General;
+using CodeBase.ECS.Systems.General.Bullets;
+using CodeBase.ECS.Systems.General.Collisions;
+using CodeBase.ECS.Systems.Player;
+using CodeBase.ECS.Systems.UI;
 using CodeBase.Infrastructure.CoreEngine;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.UnityEditor;

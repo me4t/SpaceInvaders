@@ -1,3 +1,4 @@
+using CodeBase.Services.ProgressService;
 using CodeBase.Services.StaticData;
 using Zenject;
 
@@ -21,7 +22,7 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 		public void Enter()
 		{
 			playerProgressService.Progress = new PlayerProgress();
-			gameStateMachine.Enter<LoadLevelState, string>(Constants.MainSceneName);
+			gameStateMachine.Enter<LoadLevelState, string>(Constants.Constants.MainSceneName);
 		}
 		public class Factory : PlaceholderFactory<IGameStateMachine, CreateProgressState>
 		{

@@ -1,6 +1,6 @@
 using CodeBase.Configs;
-using CodeBase.ECS.Systems.Factories;
-using CodeBase.ECS.Systems.LevelCreate;
+using CodeBase.Data;
+using CodeBase.ECS.Systems.Create;
 using CodeBase.Enums;
 
 namespace CodeBase.Services.StaticData
@@ -20,23 +20,22 @@ namespace CodeBase.Services.StaticData
 				Health = x.Health
 			};
 		
-		public static BulletLootData NewBulletLootData(this BulletLootConfig x)
-		{
-			var lootData = new BulletLootData();
-			lootData.PrefabPath = x.Path.ConvertToString();
-			lootData.BodySize = x.BodySize;
-			lootData.BulletType = x.Type;
-			lootData.Count = x.Count;
-			return lootData;
-		}
-		public static LevelData NewBulletLootData(this LevelConfig x)
-		{
-			var lootData = new LevelData();
-			lootData.Key = x.Key;
-			lootData.PlayerSpawnPoint = x.PlayerSpawnPoint;
-			lootData.aliens = x.Aliens;
-			return lootData;
-		}
+		public static BulletLootData NewBulletLootData(this BulletLootConfig x) =>
+			new BulletLootData
+			{
+				PrefabPath = x.Path.ConvertToString(),
+				BodySize = x.BodySize,
+				BulletType = x.Type,
+				Count = x.Count
+			};
+
+		public static LevelData NewBulletLootData(this LevelConfig x) =>
+			new LevelData
+			{
+				Key = x.Key,
+				PlayerSpawnPoint = x.PlayerSpawnPoint,
+				aliens = x.Aliens
+			};
 
 
 		public static AlienCreateData NewAlienData(this AlienConfig x) =>

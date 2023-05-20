@@ -1,5 +1,5 @@
-using CodeBase.ECS.Systems.Factories;
-using CodeBase.ECS.Systems.LevelCreate;
+using CodeBase.MonoBehaviourView;
+using CodeBase.Services.ViewsFactory;
 using Zenject;
 
 namespace CodeBase.ZenjectInstallers

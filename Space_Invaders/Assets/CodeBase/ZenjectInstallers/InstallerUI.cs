@@ -1,4 +1,5 @@
 using CodeBase.Services.SceneLoader;
+using CodeBase.UI;
 using Zenject;
 
 namespace CodeBase.ZenjectInstallers

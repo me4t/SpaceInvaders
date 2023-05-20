@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using CodeBase.Configs;
-using CodeBase.ECS.Systems.LevelCreate;
 using CodeBase.Enums;
+using CodeBase.MonoBehaviourView;
 using UnityEditor;
 using UnityEngine;
 
