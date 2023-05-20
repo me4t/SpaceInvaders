@@ -2,20 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using CodeBase.Enums;
+using CodeBase.Extensions;
 using CodeBase.UI;
 using TMPro;
 using UnityEngine;
 
 namespace CodeBase.Services.HudService
 {
-	public interface IHudService
-	{
-		void UpdateScore(float current);
-		void UpdateRound(int current);
-		void UpdateHp(float current,float max);
-		void UpdateBullets(Dictionary<BulletType, int> bulletOwnerBullets);
-	}
-
 	public class HudService : MonoBehaviour, IHudService
 	{
 		[SerializeField] private TextMeshProUGUI Score;
@@ -49,5 +42,13 @@ namespace CodeBase.Services.HudService
 
 		}
 
+	}
+
+	public interface IHudService
+	{
+		void UpdateScore(float current);
+		void UpdateRound(int current);
+		void UpdateHp(float current,float max);
+		void UpdateBullets(Dictionary<BulletType, int> bulletOwnerBullets);
 	}
 }

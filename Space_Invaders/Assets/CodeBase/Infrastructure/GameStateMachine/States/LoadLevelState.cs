@@ -1,4 +1,5 @@
 using CodeBase.CompositionRoot;
+using CodeBase.Data;
 using CodeBase.ECS.Systems.Create;
 using CodeBase.Infrastructure.CoreEngine;
 using CodeBase.Services.SceneLoader;
@@ -14,11 +15,11 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 	{
 		private readonly IGameStateMachine gameStateMachine;
 		private readonly IStaticDataService staticDataService;
-		private readonly SceneLoader sceneLoader;
+		private readonly ISceneLoader sceneLoader;
 		private readonly ICoreEngine coreEngine;
 
 		public LoadLevelState(IGameStateMachine gameStateMachine, 
-			IStaticDataService staticDataService,LoadingCurtain curtain,SceneLoader sceneLoader,ICoreEngine coreEngine)
+			IStaticDataService staticDataService,LoadingCurtain curtain,ISceneLoader sceneLoader,ICoreEngine coreEngine)
 		{
 			this.gameStateMachine = gameStateMachine;
 			this.staticDataService = staticDataService;

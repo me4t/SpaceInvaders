@@ -3,6 +3,7 @@ using CodeBase.ECS.Components;
 using CodeBase.ECS.Factories;
 using CodeBase.Enums;
 using CodeBase.Extensions;
+using CodeBase.Services.Input;
 using CodeBase.Services.SceneLoader;
 using CodeBase.Services.StaticData;
 using Leopotam.EcsLite;

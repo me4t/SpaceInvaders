@@ -1,6 +1,5 @@
 using CodeBase.ECS.Components;
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace CodeBase.ECS.Systems.General
 {
@@ -34,12 +33,10 @@ namespace CodeBase.ECS.Systems.General
 				if (!collisionEvent.Hittable.Unpack(world, out int hittable)) continue;
 				if (!collisionEvent.DamageDealer.Unpack(world, out int dealer)) continue;
 				
-				Debug.Log(dealer);
 
 				var newEntity = world.NewEntity();
 				ref var damage = ref damagePool.Add(newEntity);
 				
-				Debug.Log(damageDealerPool.Has(dealer));
 				ref var damageDealer = ref damageDealerPool.Get(dealer);
 				damage.Value = damageDealer.Value;
 				damage.Target = world.PackEntity(hittable);

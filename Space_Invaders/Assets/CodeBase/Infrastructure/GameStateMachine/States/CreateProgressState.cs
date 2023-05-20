@@ -1,5 +1,4 @@
 using CodeBase.Services.ProgressService;
-using CodeBase.Services.StaticData;
 using Zenject;
 
 namespace CodeBase.Infrastructure.GameStateMachine.States

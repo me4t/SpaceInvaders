@@ -3,7 +3,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CodeBase.Extensions
 {
-	public static class ExtensionMethods
+	public static class CopyExtensions
 	{
 		public static T DeepCopy<T>(this T self)
 		{

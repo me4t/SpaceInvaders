@@ -1,4 +1,3 @@
-using CodeBase.CompositionRoot;
 using CodeBase.Infrastructure.CoreEngine;
 using CodeBase.UI;
 using UnityEngine;

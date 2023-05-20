@@ -1,11 +1,13 @@
+using CodeBase.Data;
 using CodeBase.Enums;
+using CodeBase.Extensions;
 using UnityEngine;
 
 namespace CodeBase.MonoBehaviourView
 {
 	public class AlienSpawn : MonoBehaviour
 	{
-		public FormationExtensions.FormationData data = new FormationExtensions.FormationData();
+		public FormationData data = new FormationData();
 
 		private void OnDrawGizmos()
 		{

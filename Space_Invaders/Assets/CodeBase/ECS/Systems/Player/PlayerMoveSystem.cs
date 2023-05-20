@@ -1,7 +1,9 @@
 using CodeBase.ECS.Components;
 using CodeBase.Extensions;
+using CodeBase.Services.Input;
 using CodeBase.Services.SceneLoader;
 using CodeBase.Services.StaticData;
+using CodeBase.Services.TimeService;
 using Leopotam.EcsLite;
 using Unity.Mathematics;
 
@@ -18,18 +20,18 @@ namespace CodeBase.ECS.Systems.Player
 		private EcsPool<Speed> speedPool;
 		private EcsPool<Position> positionPool;
 
+		public PlayerMoveSystem(IInputService inputService, ITimeService timeService)
+		{
+			this.inputService = inputService;
+			this.timeService = timeService;
+		}
+
 		public void Init(IEcsSystems systems)
 		{
 			world = systems.GetWorld();
 			filter = world.Filter<Components.Player>().Inc<View>().End();
 			speedPool = world.GetPool<Speed>();
 			positionPool = world.GetPool<Position>();
-		}
-
-		public PlayerMoveSystem(IInputService inputService, ITimeService timeService)
-		{
-			this.inputService = inputService;
-			this.timeService = timeService;
 		}
 
 		public void Run(IEcsSystems systems)

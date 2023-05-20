@@ -6,9 +6,11 @@ using CodeBase.Services.Input;
 using CodeBase.Services.ProgressService;
 using CodeBase.Services.SceneLoader;
 using CodeBase.Services.StaticData;
+using CodeBase.Services.TimeService;
 using CodeBase.Services.ViewsFactory;
 using CodeBase.UI;
 using CodeBase.ZenjectInstallers;
+using UnityEngine;
 using Zenject;
 
 namespace CodeBase.CompositionRoot
@@ -36,7 +38,24 @@ namespace CodeBase.CompositionRoot
 		private void BindPlayerProgressService() => Container.Bind<IPlayerProgressService>().To<PlayerProgressService>().AsSingle();
 		private void BindTimeService() => Container.Bind<ITimeService>().To<TimeService>().AsSingle();
 
-		private void BindSceneLoader() => Container.Bind<SceneLoader>().AsSingle();
+		private void BindSceneLoader()
+		{
+			Container.Bind<ISceneLoader>().To<AsyncSceneLoader>().AsSingle().When(IsEditor);
+			Container.Bind<ISceneLoader>().To<SceneLoaderWebgl>().AsSingle().When(IsWebgl);
+		}
+
+		private  bool IsEditor(InjectContext context)
+		{
+			return Application.isEditor;
+		}
+		private  bool IsWebgl(InjectContext context)
+		{
+#if UNITY_WEBGL && !UNITY_EDITOR
+			return true;
+#endif
+			return false; 
+		}
+
 		private void BindInputService() => Container.BindInterfacesTo<StandaloneInputService>().AsSingle();
 
 		private void BindCoroutineRunner() =>

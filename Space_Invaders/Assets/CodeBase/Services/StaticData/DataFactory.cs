@@ -2,6 +2,7 @@ using CodeBase.Configs;
 using CodeBase.Data;
 using CodeBase.ECS.Systems.Create;
 using CodeBase.Enums;
+using CodeBase.Extensions;
 
 namespace CodeBase.Services.StaticData
 {
@@ -32,7 +33,6 @@ namespace CodeBase.Services.StaticData
 		public static LevelData NewBulletLootData(this LevelConfig x) =>
 			new LevelData
 			{
-				Key = x.Key,
 				PlayerSpawnPoint = x.PlayerSpawnPoint,
 				aliens = x.Aliens
 			};

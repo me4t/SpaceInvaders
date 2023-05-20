@@ -1,5 +1,6 @@
 using CodeBase.Configs;
 using CodeBase.Enums;
+using CodeBase.Extensions;
 using CodeBase.Services.StaticData;
 using UnityEngine.SceneManagement;
 

@@ -1,6 +1,7 @@
 using CodeBase.ECS.Components;
 using CodeBase.Services.SceneLoader;
 using CodeBase.Services.StaticData;
+using CodeBase.Services.TimeService;
 using Leopotam.EcsLite;
 using Unity.Mathematics;
 

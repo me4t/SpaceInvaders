@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using CodeBase.Configs;
+using CodeBase.Data;
 using CodeBase.ECS.Components;
 using CodeBase.ECS.Factories;
 using CodeBase.ECS.Systems.Create;

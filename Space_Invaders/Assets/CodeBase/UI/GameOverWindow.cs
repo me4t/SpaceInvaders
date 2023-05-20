@@ -14,14 +14,15 @@ namespace CodeBase.UI
 		protected override void OnAwake() => 
 			restartButton.onClick.AddListener(Restart);
 
-		private void Restart() => 
-			gameStateMachine.Enter<RestartState>();
-
 		[Inject]
 		public void Construct(IGameStateMachine gameStateMachine)
 		{
 			this.gameStateMachine = gameStateMachine;
 		}
+
+		private void Restart() => 
+			gameStateMachine.Enter<RestartState>();
+
 		public class Factory : PlaceholderFactory<string, GameOverWindow>
 		{
 		}

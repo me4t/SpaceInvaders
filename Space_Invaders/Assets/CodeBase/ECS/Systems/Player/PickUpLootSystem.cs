@@ -22,9 +22,7 @@ namespace CodeBase.ECS.Systems.Player
 			bulletLoot = world.GetPool<BulletLoot>();
 			bulletOwner = world.GetPool<BulletOwner>();
 			updatePool = world.GetPool<UpdateBulletCountEvent>();
-			
 		}
-
 
 		public void Run(IEcsSystems systems)
 		{
@@ -36,9 +34,9 @@ namespace CodeBase.ECS.Systems.Player
 
 				ref var lootBullet = ref bulletLoot.Get(loot);
 				ref var fireBulletOwner = ref bulletOwner.Get(player);
-				AddBullets(fireBulletOwner,ref  lootBullet);
+				AddBullets(fireBulletOwner, ref lootBullet);
 				world.DelEntity(loot);
-				
+
 				UpdateUI(player);
 			}
 		}
@@ -49,7 +47,7 @@ namespace CodeBase.ECS.Systems.Player
 				updatePool.Add(player);
 		}
 
-		private  void AddBullets(BulletOwner bulletOwner, ref BulletLoot lootBullet)
+		private void AddBullets(BulletOwner bulletOwner, ref BulletLoot lootBullet)
 		{
 			if (bulletOwner.Bullets.ContainsKey(lootBullet.Type))
 				bulletOwner.Bullets[lootBullet.Type] += lootBullet.Count;

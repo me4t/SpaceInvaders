@@ -1,16 +1,15 @@
 using System;
 using System.Collections;
-using CodeBase.Infrastructure;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace CodeBase.Services.SceneLoader
 {
-	public class SceneLoader
+	public class AsyncSceneLoader:ISceneLoader
 	{
 		private readonly CoroutineRunner.CoroutineRunner coroutineRunner;
 
-		public SceneLoader(CoroutineRunner.CoroutineRunner coroutineRunner) =>
+		public AsyncSceneLoader(CoroutineRunner.CoroutineRunner coroutineRunner) =>
 			this.coroutineRunner = coroutineRunner;
 
 		public void Load(string name, Action onLoaded = null) =>
@@ -30,23 +29,8 @@ namespace CodeBase.Services.SceneLoader
 		}
 	}
 
-	public class TimeService : ITimeService
+	public interface ISceneLoader
 	{
-		public float DeltaTime => Time.deltaTime;
-
-	}
-
-	public interface ITimeService
-	{
-		float DeltaTime { get; }
-	}
-
-	public interface IInputService
-	{
-		float Horizontal { get; }
-		float Vertical { get; }
-		Vector2 Axis { get;}
-		bool IsIceFire { get;}
-		bool IsFireMagic { get;}
+		void Load(string name, Action onLoaded = null);
 	}
 }

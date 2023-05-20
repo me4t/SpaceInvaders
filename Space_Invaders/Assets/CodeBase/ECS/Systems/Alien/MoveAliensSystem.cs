@@ -1,6 +1,7 @@
 using CodeBase.ECS.Components;
 using CodeBase.Services.SceneLoader;
 using CodeBase.Services.StaticData;
+using CodeBase.Services.TimeService;
 using Leopotam.EcsLite;
 
 namespace CodeBase.ECS.Systems.Alien
@@ -17,6 +18,11 @@ namespace CodeBase.ECS.Systems.Alien
 		private EcsPool<MoveEvent> moveEventPool;
 		private EcsPool<MoveDirection> moveDirectionPool;
 
+		public MoveAliensSystem(ITimeService timeService)
+		{
+			this.timeService = timeService;
+		}
+
 		public void Init(IEcsSystems systems)
 		{
 			world = systems.GetWorld();
@@ -26,11 +32,6 @@ namespace CodeBase.ECS.Systems.Alien
 			speedPool = world.GetPool<Speed>();
 			moveEventPool = world.GetPool<MoveEvent>();
 			moveDirectionPool = world.GetPool<MoveDirection>();
-		}
-
-		public MoveAliensSystem(ITimeService timeService)
-		{
-			this.timeService = timeService;
 		}
 
 		public void Run(IEcsSystems systems)

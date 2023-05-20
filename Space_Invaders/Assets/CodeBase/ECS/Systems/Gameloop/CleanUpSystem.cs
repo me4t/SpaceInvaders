@@ -9,6 +9,7 @@ namespace CodeBase.ECS.Systems.Gameloop
 		private EcsFilter filter;
 		private EcsFilter filterNextRound;
 		private EcsFilter collisionHittableFilter;
+		private EcsFilter bulletCountFilter;
 
 
 		public void Init(IEcsSystems systems)
@@ -17,6 +18,7 @@ namespace CodeBase.ECS.Systems.Gameloop
 			filter = world.Filter<RoundPassed>().End();
 			filterNextRound = world.Filter<NextRoundEvent>().End();
 			collisionHittableFilter = world.Filter<CollisionHittableWithDamageDealer>().End();
+			bulletCountFilter = world.Filter<UpdateBulletCountEvent>().End();
 		}
 		
 
@@ -25,6 +27,7 @@ namespace CodeBase.ECS.Systems.Gameloop
 			CleanRoundCompleted();
 			CleanNextRoundEvent();
 			CleanCollisionHittableWithDamageDealer();
+			CleanBulletCountEvent();
 		}
 
 		private void CleanRoundCompleted()
@@ -34,6 +37,10 @@ namespace CodeBase.ECS.Systems.Gameloop
 		private void CleanCollisionHittableWithDamageDealer()
 		{
 			foreach (var entity in collisionHittableFilter) world.DelEntity(entity);
+		}
+		private void CleanBulletCountEvent()
+		{
+			foreach (var entity in bulletCountFilter) world.DelEntity(entity);
 		}
 		private void CleanNextRoundEvent()
 		{
