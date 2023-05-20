@@ -25,7 +25,6 @@ namespace CodeBase.ZenjectInstallers
 		private void BindEcsSystems()
 		{
 			BindCommonSystems();
-			BindClientSystems();
 
 #if UNITY_EDITOR
 				BindDebugSystems();
@@ -40,18 +39,11 @@ namespace CodeBase.ZenjectInstallers
 #endif
         
 
-		private void BindClientSystems()
-		{
-          
-           
-		}
-
 		private void BindCommonSystems()
 		{
 			BindSystem<PlayerMoveSystem>();
 			BindSystem<MovementTimerSystem>();
 			BindSystem<MoveAliensSystem>();
-
 			BindSystem<CreateRoundSystem>();
 			BindSystem<CreateLootViewSystem>();
 			BindSystem<CreateAlienViewSystem>();

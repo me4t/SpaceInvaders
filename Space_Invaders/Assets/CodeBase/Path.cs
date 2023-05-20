@@ -1,4 +1,4 @@
-namespace CodeBase.Constants
+namespace CodeBase
 {
 	public static class Path
 	{

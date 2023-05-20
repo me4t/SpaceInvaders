@@ -36,6 +36,7 @@ namespace CodeBase.ECS.Factories
 			var damageDealerPool = world.GetPool<DamageDealer>();
 			ref var damageDealer = ref damageDealerPool.Add(entity);
 			damageDealer.Value = config.Damage;
+			
 
 			return entity;
 		}

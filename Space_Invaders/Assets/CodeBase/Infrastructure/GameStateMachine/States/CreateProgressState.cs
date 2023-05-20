@@ -22,7 +22,7 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 		public void Enter()
 		{
 			playerProgressService.Progress = new PlayerProgress();
-			gameStateMachine.Enter<LoadLevelState, string>(Constants.Constants.MainSceneName);
+			gameStateMachine.Enter<LoadLevelState, string>(Constants.MainSceneName);
 		}
 		public class Factory : PlaceholderFactory<IGameStateMachine, CreateProgressState>
 		{

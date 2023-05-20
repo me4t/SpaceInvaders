@@ -1,4 +1,4 @@
-namespace CodeBase.Constants
+namespace CodeBase
 {
 	public static class Constants 
 	{
@@ -8,6 +8,7 @@ namespace CodeBase.Constants
 		public const int MaxBoardLimitX = 25;
 		public const int MaxBoardLimitZ = 35;
 		public const int MinBoardLimitZ = -55;
+		public const int OffsetForBorder = -5;
 	}
 }
 

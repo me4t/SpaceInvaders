@@ -1,4 +1,5 @@
 using CodeBase.ECS.Components;
+using CodeBase.Services.SceneLoader;
 using CodeBase.Services.StaticData;
 using Leopotam.EcsLite;
 using Unity.Mathematics;
@@ -7,6 +8,7 @@ namespace CodeBase.ECS.Systems.General.Bullets
 {
 	public class FlySystem : IEcsInitSystem, IEcsRunSystem
 	{
+		private readonly ITimeService timeService;
 		private readonly IStaticDataService staticDataService;
 		private EcsWorld world;
 		private EcsFilter filter;
@@ -14,7 +16,13 @@ namespace CodeBase.ECS.Systems.General.Bullets
 		private EcsPool<Bullet> bulletPool;
 		private EcsPool<Position> positionPool;
 		private EcsPool<FlyTo> flyToPool;
+		private EcsPool<Speed> speedPool;
 
+
+		public FlySystem(ITimeService timeService)
+		{
+			this.timeService = timeService;
+		}
 
 		public void Init(IEcsSystems systems)
 		{
@@ -23,6 +31,7 @@ namespace CodeBase.ECS.Systems.General.Bullets
 
 			positionPool = world.GetPool<Position>();
 			flyToPool = world.GetPool<FlyTo>();
+			speedPool = world.GetPool<Speed>();
 		}
 
 		public void Run(IEcsSystems systems)
@@ -31,9 +40,10 @@ namespace CodeBase.ECS.Systems.General.Bullets
 			{
 				ref var position = ref positionPool.Get(entity);
 				ref var flyTo = ref flyToPool.Get(entity);
+				ref var speed = ref speedPool.Get(entity);
 
 				float3 newPosition = flyTo.Value;
-				position.Value += newPosition * 0.2f;
+				position.Value += newPosition * speed.Value * timeService.DeltaTime;
 			}
 		}
 	}

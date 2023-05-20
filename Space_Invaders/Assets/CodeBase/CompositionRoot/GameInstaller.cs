@@ -1,4 +1,3 @@
-using CodeBase.Constants;
 using CodeBase.Infrastructure.CoreEngine;
 using CodeBase.Infrastructure.GameStateMachine;
 using CodeBase.Services.CoroutineRunner;
@@ -27,11 +26,8 @@ namespace CodeBase.CompositionRoot
 			BindLoadingCurtain();
 			BindStaticData();
 			BindUI();
-
 			BindViewsFactory();
-			
 			BindGameplayEngine();
-
 			BindGameStateMachine();
 		}
 		

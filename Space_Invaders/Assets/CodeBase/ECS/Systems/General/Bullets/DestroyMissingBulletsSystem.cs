@@ -32,7 +32,7 @@ namespace CodeBase.ECS.Systems.General.Bullets
 				foreach (var missing in filter)
 				{
 					ref var position = ref positionPool.Get(missing);
-					if (MathHelpers.Distance(position.Value,playerPosition.Value) >Constants.Constants.DestroyBulletsDistance )
+					if (MathHelpers.Distance(position.Value,playerPosition.Value) >Constants.DestroyBulletsDistance )
 						world.DelEntity(missing);
 				}
 			}

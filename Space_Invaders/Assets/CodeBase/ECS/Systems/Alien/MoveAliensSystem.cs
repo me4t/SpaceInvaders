@@ -15,7 +15,7 @@ namespace CodeBase.ECS.Systems.Alien
 		private EcsPool<Position> positionPool;
 		private EcsPool<Speed> speedPool;
 		private EcsPool<MoveEvent> moveEventPool;
-		private EcsPool<MoveDirection> gunEventPool;
+		private EcsPool<MoveDirection> moveDirectionPool;
 
 		public void Init(IEcsSystems systems)
 		{
@@ -25,7 +25,7 @@ namespace CodeBase.ECS.Systems.Alien
 			positionPool = world.GetPool<Position>();
 			speedPool = world.GetPool<Speed>();
 			moveEventPool = world.GetPool<MoveEvent>();
-			gunEventPool = world.GetPool<MoveDirection>();
+			moveDirectionPool = world.GetPool<MoveDirection>();
 		}
 
 		public MoveAliensSystem(ITimeService timeService)
@@ -39,7 +39,7 @@ namespace CodeBase.ECS.Systems.Alien
 			{
 				ref var position = ref positionPool.Get(entity);
 				ref var speed = ref speedPool.Get(entity);
-				ref var move = ref gunEventPool.Get(entity);
+				ref var move = ref moveDirectionPool.Get(entity);
 
 				position.Value += move.Direction * speed.Value * timeService.DeltaTime;
 				moveEventPool.Del(entity);
