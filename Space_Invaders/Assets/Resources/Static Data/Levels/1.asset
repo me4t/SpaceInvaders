@@ -19,19 +19,74 @@ MonoBehaviour:
       y: 0
       z: -48.7
     PlayerType: 1
-  aliens:
+  Aliens:
   - Position:
-      x: 7.5
+      x: 4.422
       y: 4.83
       z: 60
     AlienType: 1
   - Position:
-      x: 7.332646
+      x: -5.472025
       y: 4.83
-      z: 62.382523
+      z: 59.258762
     AlienType: 1
   - Position:
-      x: 6.4074144
+      x: 6.3833613
       y: 4.83
-      z: 64.65526
+      z: 61.761696
+    AlienType: 1
+  - Position:
+      x: -7.100593
+      y: 4.83
+      z: 56.965057
+    AlienType: 1
+  - Position:
+      x: 7.5732336
+      y: 4.83
+      z: 64.5248
+    AlienType: 1
+  - Position:
+      x: -7.7573266
+      y: 4.83
+      z: 53.81373
+    AlienType: 1
+  - Position:
+      x: 7.6168904
+      y: 4.83
+      z: 67.966644
+    AlienType: 1
+  - Position:
+      x: -0.17729965
+      y: 4.83
+      z: 66.06941
+    AlienType: 1
+  - Position:
+      x: 1.1698362
+      y: 4.83
+      z: 52.92405
+    AlienType: 1
+  - Position:
+      x: -2.432554
+      y: 4.83
+      z: 67.90624
+    AlienType: 1
+  - Position:
+      x: 3.9335012
+      y: 4.83
+      z: 51.493416
+    AlienType: 1
+  - Position:
+      x: -5.631294
+      y: 4.83
+      z: 68.829
+    AlienType: 1
+  - Position:
+      x: 7.476138
+      y: 4.83
+      z: 51.167187
+    AlienType: 1
+  - Position:
+      x: -9.411063
+      y: 4.83
+      z: 68.48596
     AlienType: 1

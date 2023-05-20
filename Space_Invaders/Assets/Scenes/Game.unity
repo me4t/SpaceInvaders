@@ -527,14 +527,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    Amount: 30
+    Amount: 15
     Radius: 8.04
-    RadiusGrowthMultiplier: 1
+    RadiusGrowthMultiplier: 2
     Rotations: 3.65
     Rings: 2
     RingOffset: 3
-    NthOffset: 1
-    Spread: 0.5
+    NthOffset: 1.6
+    Spread: 0.55
     Noise: 0
     UnitGizmoSize: {x: 1, y: 1, z: 1}
     GizmoColor: {r: 1, g: 0, b: 0, a: 1}
