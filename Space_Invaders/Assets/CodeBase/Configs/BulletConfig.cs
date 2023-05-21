@@ -10,6 +10,6 @@ namespace CodeBase.Configs
 		public ResourcePath Path;
 		public float Speed;
 		public float Size;
-		public float Damage =10;
+		public float Damage = 10;
 	}
 }

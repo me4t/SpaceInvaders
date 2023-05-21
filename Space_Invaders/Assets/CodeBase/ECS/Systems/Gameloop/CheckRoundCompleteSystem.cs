@@ -4,7 +4,7 @@ using Leopotam.EcsLite;
 
 namespace CodeBase.ECS.Systems.Gameloop
 {
-	public class CheckRoundComplete : IEcsInitSystem, IEcsRunSystem
+	public class CheckRoundCompleteSystem : IEcsInitSystem, IEcsRunSystem
 	{
 		private EcsWorld world;
 		private EcsFilter filter;
@@ -20,7 +20,7 @@ namespace CodeBase.ECS.Systems.Gameloop
 			roundPool = world.GetPool<RoundCreateRequest>();
 			roundCompletedPool = world.GetPool<RoundPassed>();
 		}
-		
+
 
 		public void Run(IEcsSystems systems)
 		{

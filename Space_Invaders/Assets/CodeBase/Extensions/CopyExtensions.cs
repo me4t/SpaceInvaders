@@ -13,7 +13,7 @@ namespace CodeBase.Extensions
 				formatter.Serialize(stream, self);
 				stream.Seek(0, SeekOrigin.Begin);
 				object copy = formatter.Deserialize(stream);
-				return (T) copy;
+				return (T)copy;
 			}
 		}
 	}

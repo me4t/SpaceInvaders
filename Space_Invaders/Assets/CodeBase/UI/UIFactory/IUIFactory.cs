@@ -1,4 +1,4 @@
-namespace CodeBase.UI
+namespace CodeBase.UI.UIFactory
 {
 	public interface IUIFactory
 	{

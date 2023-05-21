@@ -3,7 +3,7 @@ using Leopotam.EcsLite;
 
 namespace CodeBase.ECS.Systems.Gameloop
 {
-	public class CleanUpSystem: IEcsInitSystem, IEcsRunSystem
+	public class CleanUpSystem : IEcsInitSystem, IEcsRunSystem
 	{
 		private EcsWorld world;
 		private EcsFilter filter;
@@ -20,7 +20,7 @@ namespace CodeBase.ECS.Systems.Gameloop
 			collisionHittableFilter = world.Filter<CollisionHittableWithDamageDealer>().End();
 			bulletCountFilter = world.Filter<UpdateBulletCountEvent>().End();
 		}
-		
+
 
 		public void Run(IEcsSystems systems)
 		{
@@ -34,14 +34,17 @@ namespace CodeBase.ECS.Systems.Gameloop
 		{
 			foreach (var entity in filter) world.DelEntity(entity);
 		}
+
 		private void CleanCollisionHittableWithDamageDealer()
 		{
 			foreach (var entity in collisionHittableFilter) world.DelEntity(entity);
 		}
+
 		private void CleanBulletCountEvent()
 		{
 			foreach (var entity in bulletCountFilter) world.DelEntity(entity);
 		}
+
 		private void CleanNextRoundEvent()
 		{
 			foreach (var entity in filterNextRound) world.DelEntity(entity);

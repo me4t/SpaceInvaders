@@ -21,7 +21,7 @@ namespace CodeBase.ECS.Systems.General.Bullets
 			filterPlayer = world.Filter<Components.Player>().End();
 			positionPool = world.GetPool<Position>();
 		}
-		
+
 
 		public void Run(IEcsSystems systems)
 		{
@@ -32,7 +32,7 @@ namespace CodeBase.ECS.Systems.General.Bullets
 				foreach (var missing in filter)
 				{
 					ref var position = ref positionPool.Get(missing);
-					if (MathHelpers.Distance(position.Value,playerPosition.Value) >Constants.DestroyBulletsDistance )
+					if (MathHelpers.Distance(position.Value, playerPosition.Value) > Constants.DestroyBulletsDistance)
 						world.DelEntity(missing);
 				}
 			}

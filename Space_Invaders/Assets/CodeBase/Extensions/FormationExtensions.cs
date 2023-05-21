@@ -39,7 +39,5 @@ namespace CodeBase.Extensions
 				ringOffset += data.RingOffset;
 			}
 		}
-
-	
 	}
 }

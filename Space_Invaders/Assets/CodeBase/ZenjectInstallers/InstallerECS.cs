@@ -61,7 +61,7 @@ namespace CodeBase.ZenjectInstallers
 			BindSystem<DamageSystem>();
 			BindSystem<LootSpawnSystem>();
 			BindSystem<DeathSystem>();
-			BindSystem<CheckRoundComplete>();
+			BindSystem<CheckRoundCompleteSystem>();
 			BindSystem<ScoreSystem>();
 			BindSystem<SetNextRoundSystem>();
 			BindSystem<UpdateRoundSystem>();

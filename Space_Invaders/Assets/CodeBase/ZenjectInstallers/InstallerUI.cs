@@ -1,4 +1,7 @@
+using CodeBase.Services.WindowService;
 using CodeBase.UI;
+using CodeBase.UI.UIFactory;
+using CodeBase.UI.Windows;
 using Zenject;
 
 namespace CodeBase.ZenjectInstallers

@@ -32,7 +32,7 @@ namespace CodeBase.ECS.Systems.General.Collisions
 			{
 				var playerPosition = positionPool.Get(player).Value;
 				var playerSize = bodySizePool.Get(player).Radius;
-				
+
 				foreach (var loot in lootFilter)
 				{
 					var alienPosition = positionPool.Get(loot).Value;

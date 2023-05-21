@@ -50,9 +50,9 @@ namespace CodeBase.ECS.Factories
 			ref var health = ref healthPool.Add(entity);
 			health.Max = config.Health;
 			health.Current = config.Health;
-			
+
 			var hittablePool = world.GetPool<Hittable>();
-			hittablePool.Add(entity);	
+			hittablePool.Add(entity);
 
 			return entity;
 		}

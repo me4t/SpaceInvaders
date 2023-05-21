@@ -15,7 +15,7 @@ namespace CodeBase.ECS.Factories
 
 			ref var requestComponent = ref reqeustsPool.Add(entity);
 			requestComponent.Config = config;
-			requestComponent.WithPlayer = withPlayer;			
+			requestComponent.WithPlayer = withPlayer;
 			return entity;
 		}
 	}

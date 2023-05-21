@@ -8,7 +8,6 @@ namespace CodeBase.Data
 	public class PlayerData
 	{
 		public float3 Position;
-		public PlayerType Type;
 		public string PrefabPath;
 		public float Speed;
 		public float3 GunDirection;

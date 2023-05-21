@@ -32,11 +32,11 @@ namespace CodeBase.ECS.Systems.General
 				ref var collisionEvent = ref collisionEventPool.Get(collision);
 				if (!collisionEvent.Hittable.Unpack(world, out int hittable)) continue;
 				if (!collisionEvent.DamageDealer.Unpack(world, out int dealer)) continue;
-				
+
 
 				var newEntity = world.NewEntity();
 				ref var damage = ref damagePool.Add(newEntity);
-				
+
 				ref var damageDealer = ref damageDealerPool.Get(dealer);
 				damage.Value = damageDealer.Value;
 				damage.Target = world.PackEntity(hittable);

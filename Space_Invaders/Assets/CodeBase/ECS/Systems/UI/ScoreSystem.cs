@@ -17,7 +17,7 @@ namespace CodeBase.ECS.Systems.UI
 		private EcsPool<UpdateScore> updateScorePool;
 
 
-		public ScoreSystem(IHudService hudService,IPlayerProgressService playerProgressService)
+		public ScoreSystem(IHudService hudService, IPlayerProgressService playerProgressService)
 		{
 			this.hudService = hudService;
 			this.playerProgressService = playerProgressService;
@@ -37,8 +37,8 @@ namespace CodeBase.ECS.Systems.UI
 				ref var updateScore = ref updateScorePool.Get(entity);
 				playerProgressService.Progress.Score += updateScore.Value;
 				world.DelEntity(entity);
-
 			}
+
 			hudService.UpdateScore(playerProgressService.Progress.Score);
 		}
 	}

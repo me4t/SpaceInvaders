@@ -1,5 +1,7 @@
 using CodeBase.Configs;
 using CodeBase.ECS.Components;
+using CodeBase.Enums;
+using CodeBase.Services.WindowService;
 using CodeBase.UI;
 using Leopotam.EcsLite;
 
@@ -29,7 +31,6 @@ namespace CodeBase.ECS.Systems.Gameloop
 			gameOverPool = world.GetPool<GameOverRequest>();
 			positionPool = world.GetPool<Position>();
 			aliensFilter = world.Filter<Components.Alien>().Inc<View>().Exc<Dead>().End();
-
 		}
 
 		public void Run(IEcsSystems systems)
@@ -40,6 +41,7 @@ namespace CodeBase.ECS.Systems.Gameloop
 				GameOver();
 				return;
 			}
+
 			foreach (var alien in aliensFilter)
 			{
 				ref var position = ref positionPool.Get(alien);

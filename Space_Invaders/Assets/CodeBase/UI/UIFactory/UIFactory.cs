@@ -1,10 +1,10 @@
-using CodeBase.Configs;
 using CodeBase.Enums;
 using CodeBase.Extensions;
 using CodeBase.Services.StaticData;
+using CodeBase.UI.Windows;
 using UnityEngine.SceneManagement;
 
-namespace CodeBase.UI
+namespace CodeBase.UI.UIFactory
 {
 	public class UIFactory : IUIFactory
 	{

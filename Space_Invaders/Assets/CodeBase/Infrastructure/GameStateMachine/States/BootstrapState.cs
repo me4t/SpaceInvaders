@@ -1,5 +1,4 @@
 using CodeBase.Services.StaticData;
-using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Infrastructure.GameStateMachine.States
@@ -9,7 +8,7 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 		private readonly IGameStateMachine gameStateMachine;
 		private readonly IStaticDataService staticDataService;
 
-		public BootstrapState(IGameStateMachine gameStateMachine,IStaticDataService staticDataService)
+		public BootstrapState(IGameStateMachine gameStateMachine, IStaticDataService staticDataService)
 		{
 			this.gameStateMachine = gameStateMachine;
 			this.staticDataService = staticDataService;
@@ -17,7 +16,6 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 
 		public void Enter()
 		{
-			Debug.Log("Entered BootstrapState ");
 			InitializeServices();
 			gameStateMachine.Enter<CreateProgressState>();
 		}
@@ -29,7 +27,6 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 
 		public void Exit()
 		{
-            
 		}
 
 		public class Factory : PlaceholderFactory<IGameStateMachine, BootstrapState>

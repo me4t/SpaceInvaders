@@ -1,6 +1,6 @@
-using CodeBase.Configs;
+using CodeBase.Enums;
 
-namespace CodeBase.UI
+namespace CodeBase.Services.WindowService
 {
 	public interface IWindowService
 	{

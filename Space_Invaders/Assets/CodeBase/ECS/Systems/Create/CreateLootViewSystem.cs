@@ -14,6 +14,7 @@ namespace CodeBase.ECS.Systems.Create
 		private EcsPool<View> viewPool;
 		private EcsPool<SpawnEvent> spawnEventPool;
 		private EcsPool<Loot> lootPool;
+
 		public CreateLootViewSystem(IViewsFactory viewsFactory)
 		{
 			this.viewsFactory = viewsFactory;

@@ -9,7 +9,6 @@ namespace CodeBase.Data
 	public class AlienCreateData
 	{
 		public float3 Position;
-		public AlienType AlienType;
 		public string PrefabPath;
 		public float BodySize;
 		public float Health;

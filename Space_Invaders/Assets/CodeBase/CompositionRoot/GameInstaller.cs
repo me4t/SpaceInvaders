@@ -8,6 +8,7 @@ using CodeBase.Services.SceneLoader;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.TimeService;
 using CodeBase.Services.ViewsFactory;
+using CodeBase.Services.WindowService;
 using CodeBase.UI;
 using CodeBase.ZenjectInstallers;
 using UnityEngine;
@@ -32,10 +33,13 @@ namespace CodeBase.CompositionRoot
 			BindGameplayEngine();
 			BindGameStateMachine();
 		}
-		
+
 
 		private void BindStaticData() => Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
-		private void BindPlayerProgressService() => Container.Bind<IPlayerProgressService>().To<PlayerProgressService>().AsSingle();
+
+		private void BindPlayerProgressService() =>
+			Container.Bind<IPlayerProgressService>().To<PlayerProgressService>().AsSingle();
+
 		private void BindTimeService() => Container.Bind<ITimeService>().To<TimeService>().AsSingle();
 
 		private void BindSceneLoader()
@@ -44,16 +48,17 @@ namespace CodeBase.CompositionRoot
 			Container.Bind<ISceneLoader>().To<SceneLoaderWebgl>().AsSingle().When(IsWebgl);
 		}
 
-		private  bool IsEditor(InjectContext context)
+		private bool IsEditor(InjectContext context)
 		{
 			return Application.isEditor;
 		}
-		private  bool IsWebgl(InjectContext context)
+
+		private bool IsWebgl(InjectContext context)
 		{
 #if UNITY_WEBGL && !UNITY_EDITOR
 			return true;
 #endif
-			return false; 
+			return false;
 		}
 
 		private void BindInputService() => Container.BindInterfacesTo<StandaloneInputService>().AsSingle();
@@ -63,7 +68,7 @@ namespace CodeBase.CompositionRoot
 				.BindInterfacesTo<HudService>()
 				.FromComponentInNewPrefabResource(Path.Hud)
 				.AsSingle();
-		
+
 		private void BindCoroutineRunner() =>
 			Container
 				.Bind<CoroutineRunner>()
@@ -87,6 +92,7 @@ namespace CodeBase.CompositionRoot
 				.FromComponentInNewPrefabResource(Path.Curtain)
 				.AsSingle();
 		}
+
 		private void BindGameplayEngine()
 		{
 			Container
@@ -96,6 +102,7 @@ namespace CodeBase.CompositionRoot
 				.WithKernel()
 				.AsSingle();
 		}
+
 		private void BindViewsFactory()
 		{
 			Container
@@ -105,6 +112,7 @@ namespace CodeBase.CompositionRoot
 				.WithKernel()
 				.AsSingle();
 		}
+
 		private void BindUI()
 		{
 			Container

@@ -11,7 +11,6 @@ namespace CodeBase.Services.StaticData
 		public static PlayerData NewPlayerData(this PlayerConfig x) =>
 			new PlayerData
 			{
-				Type = x.Type,
 				PrefabPath = x.Path.ConvertToString(),
 				Speed = x.Speed,
 				GunDirection = x.GunDirection,
@@ -41,7 +40,6 @@ namespace CodeBase.Services.StaticData
 		public static AlienCreateData NewAlienData(this AlienConfig x) =>
 			new AlienCreateData
 			{
-				AlienType = x.Type,
 				PrefabPath = x.Path.ConvertToString(),
 				BodySize = x.Size,
 				Health = x.Health,

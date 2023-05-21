@@ -18,13 +18,15 @@ namespace CodeBase.Services.ViewsFactory
 		private readonly BulletView.Factory bulletFactory;
 		private readonly LootView.Factory lootFactory;
 
-		public ViewsFactory(AlienView.Factory alienFactory,PlayerView.Factory playerFactory,BulletView.Factory bulletFactory,LootView.Factory lootFactory)
+		public ViewsFactory(AlienView.Factory alienFactory, PlayerView.Factory playerFactory,
+			BulletView.Factory bulletFactory, LootView.Factory lootFactory)
 		{
 			this.alienFactory = alienFactory;
 			this.playerFactory = playerFactory;
 			this.bulletFactory = bulletFactory;
 			this.lootFactory = lootFactory;
 		}
+
 		public IUnityObjectView CreateAlien(string path)
 		{
 			var view = alienFactory.Create(path);

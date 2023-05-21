@@ -24,6 +24,5 @@ namespace CodeBase.Configs
 		};
 
 		public float LootDropChange = 100;
-		
 	}
 }

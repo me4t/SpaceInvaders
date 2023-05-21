@@ -40,6 +40,7 @@ namespace CodeBase.ECS.Systems.General
 					ref var updateScore = ref updateScorePool.Add(newEntity);
 					updateScore.Value = scoreLoot.Value;
 				}
+
 				viewPool.Del(entity);
 				deathEventPool.Del(entity);
 				deadPool.Add(entity);

@@ -53,10 +53,10 @@ namespace CodeBase.ECS.Systems.Player
 			}
 		}
 
-		private static bool IsInBoundsX(float3 newPosition) => 
+		private static bool IsInBoundsX(float3 newPosition) =>
 			newPosition.x is > Constants.MinBoardLimitX and < Constants.MaxBoardLimitX;
 
-		private static bool IsInBoundsZ(float3 newPosition) => 
+		private static bool IsInBoundsZ(float3 newPosition) =>
 			newPosition.z is > Constants.MinBoardLimitZ and < Constants.MaxBoardLimitZ;
 
 		private bool InputIsEmpty() =>

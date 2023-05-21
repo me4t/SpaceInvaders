@@ -28,7 +28,6 @@ namespace CodeBase.ECS.Systems.UI
 			filterPlayer = world.Filter<Components.Player>().End();
 			bulletOwnerPool = world.GetPool<BulletOwner>();
 			shootEventPool = world.GetPool<UpdateBulletCountEvent>();
-			
 		}
 
 		public void Run(IEcsSystems systems)
@@ -37,7 +36,7 @@ namespace CodeBase.ECS.Systems.UI
 			{
 				ref var bulletOwner = ref bulletOwnerPool.Get(entity);
 				shootEventPool.Del(entity);
-				
+
 				hudService.UpdateBullets(bulletOwner.Bullets);
 			}
 		}

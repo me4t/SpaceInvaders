@@ -22,6 +22,7 @@ namespace CodeBase.ECS.Systems.Alien
 		{
 			this.staticDataService = staticDataService;
 		}
+
 		public void Init(IEcsSystems systems)
 		{
 			world = systems.GetWorld();

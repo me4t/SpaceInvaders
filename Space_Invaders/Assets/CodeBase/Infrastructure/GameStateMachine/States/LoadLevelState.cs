@@ -1,12 +1,7 @@
-using CodeBase.CompositionRoot;
 using CodeBase.Data;
-using CodeBase.ECS.Systems.Create;
 using CodeBase.Infrastructure.CoreEngine;
 using CodeBase.Services.SceneLoader;
 using CodeBase.Services.StaticData;
-using CodeBase.UI;
-using Leopotam.EcsLite;
-using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Infrastructure.GameStateMachine.States
@@ -18,8 +13,10 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 		private readonly ISceneLoader sceneLoader;
 		private readonly ICoreEngine coreEngine;
 
-		public LoadLevelState(IGameStateMachine gameStateMachine, 
-			IStaticDataService staticDataService,LoadingCurtain curtain,ISceneLoader sceneLoader,ICoreEngine coreEngine)
+		public LoadLevelState(IGameStateMachine gameStateMachine,
+			IStaticDataService staticDataService,
+			ISceneLoader sceneLoader,
+			ICoreEngine coreEngine)
 		{
 			this.gameStateMachine = gameStateMachine;
 			this.staticDataService = staticDataService;
@@ -38,29 +35,23 @@ namespace CodeBase.Infrastructure.GameStateMachine.States
 
 		private void OnLoaded()
 		{
-			Debug.Log("Scene Loaded");
 			var levelConfig = staticDataService.ForLevelTemplate(1);
-            
+
 			InitSession(levelConfig);
-			PreWarmCore(); 
-            
+			PreWarmCore();
+
 			gameStateMachine.Enter<GameLoopState>();
 		}
 
-		private void InitSession(LevelData levelConfig) => 
+		private void InitSession(LevelData levelConfig) =>
 			coreEngine.InitSession(levelConfig);
 
-		private void PreWarmCore() => 
+		private void PreWarmCore() =>
 			coreEngine.Tick();
 
 
 		public class Factory : PlaceholderFactory<IGameStateMachine, LoadLevelState>
 		{
 		}
-	}
-
-	public interface IFixedEcsSystem:IEcsSystem
-	{
-        
 	}
 }

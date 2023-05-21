@@ -17,14 +17,13 @@ namespace CodeBase.ECS.Systems.Alien
 			filter = world.Filter<Components.Alien>().Inc<Dead>().End();
 			filterRound = world.Filter<RoundPassed>().End();
 		}
-		
+
 
 		public void Run(IEcsSystems systems)
 		{
 			foreach (var round in filterRound)
 			foreach (var dead in filter)
 				world.DelEntity(dead);
-
 		}
 	}
 }

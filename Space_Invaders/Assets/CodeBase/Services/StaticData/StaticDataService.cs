@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Configs;
 using CodeBase.Data;
-using CodeBase.ECS.Systems.Create;
 using CodeBase.Enums;
 using UnityEngine;
 
@@ -47,7 +46,7 @@ namespace CodeBase.Services.StaticData
 				.ToDictionary(x => x.Type, DataFactory.NewBulletLootData);
 			
 			windowConfigs = Resources
-				.Load<WindowStaticData>(StaticDataWindowPath)
+				.Load<WindowStaticConfig>(StaticDataWindowPath)
 				.Configs
 				.ToDictionary(x => x.WindowId, x => x);
 			

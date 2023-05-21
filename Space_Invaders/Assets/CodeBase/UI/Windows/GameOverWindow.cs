@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace CodeBase.UI
+namespace CodeBase.UI.Windows
 {
 	public class GameOverWindow : WindowBase
 	{
