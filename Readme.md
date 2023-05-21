@@ -14,3 +14,5 @@ E-Fire Bullets
 # Editor
 To run game start from Initial Scene
 
+# Used git lfs
+
