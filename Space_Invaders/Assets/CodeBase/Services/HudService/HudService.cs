@@ -16,6 +16,11 @@ namespace CodeBase.Services.HudService
 		[SerializeField] private TextMeshProUGUI Bullets;
 		[SerializeField] private HpBar hpBar;
 
+		private void Awake()
+		{
+			DontDestroyOnLoad(gameObject);
+		}
+
 		public void UpdateScore(float current)
 		{
 			Score.text = $"Score: {current}";
