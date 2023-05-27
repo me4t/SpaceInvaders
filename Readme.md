@@ -16,3 +16,6 @@ To run game start from Initial Scene
 
 # Used git lfs
 
+
+![Image alt](https://github.com/me4t/SpaceInvaders/raw/master/Space_Invaders/Assets/TZ.png)
+
